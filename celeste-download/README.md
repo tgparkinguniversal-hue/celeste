@@ -1,29 +1,25 @@
-# Celeste Android experimental sem áudio
+# Celeste Android — teste v0.9
 
-[Baixar APK](https://github.com/tgparkinguniversal-hue/celeste/raw/refs/heads/main/celeste-download/celeste-android-audio-test-v0.8.apk)
+[Baixar APK v0.9](https://raw.githubusercontent.com/tgparkinguniversal-hue/celeste/main/celeste-download/celeste-android-mobile-test-v0.9.apk)
 
-Os dados estão divididos em partes por causa do limite de tamanho do GitHub. A página index.html baixa e verifica cada parte e oferece o ZIP completo. O APK exige esse ZIP em Importar dados originais. Ainda não validado em aparelho Android.
+Instale por cima da versão anterior, sem desinstalar. Mesmo ZIP de Content. Áudio FMOD e controles físicos mantidos.
 
-Na v0.8, use LOG para abrir/fechar o painel de mensagens; arraste o cabeçalho para movê-lo. Ajustado o ciclo de vida de inicialização Android. Instale por cima, sem desinstalar, para preservar os dados importados.
+## Novo touch
 
-V0.6: corrigido suporte Min/Max na mistura da iluminação e brilho no backend Android do MonoGame. Novo botão FPS ao lado de LOG: FPS, RAM PSS, CPU do processo; GPU indisponível. Painéis arrastáveis pelo título, fecham em ×. Mesmo ZIP. A correção ainda precisa de teste em aparelho.
+A = pular/confirmar; X = dash; LT/RT = agarrar; B = voltar; pausa no topo. Deslize de A para X para trocar salto por dash. Zonas de toque coincidem com os círculos. Em Opções de vídeo e controles mobile, escolha tamanho, opacidade e agarrar por toque (mantém agarrar até tocar novamente). Botão TOQUE oculta/mostra o overlay.
 
-## V0.7 — controles físicos
+## Vídeo
 
-Conecte um controle reconhecido pelo Android via Bluetooth ou USB/OTG antes de iniciar. Adaptador para códigos HID padronizados Xbox, PS4, PS5 e genéricos; ainda precisa de teste físico. Primeiro controle disponível é jogador 1.
+Antes de iniciar o jogo, abra Opções de vídeo e controles mobile. Escolha apresentação em 60/90/120 FPS, saída nativa/720p/1080p/1440p/2160p e qualidade Original/Equilibrada/Desempenho. Salve e inicie COM ÁUDIO ou SEM ÁUDIO. Alterações aplicadas na próxima abertura do jogo. FPS depende do aparelho/SO. Simulação continua 60 Hz, sem interpolação de movimento; apresentar 120 frames não cria 120 estados físicos.
 
-| Ação | Xbox | PlayStation |
-|---|---|---|
-| Mover/mirar dash | Analógico esquerdo ou direcional | Analógico esquerdo ou direcional |
-| Pular/confirmar | A (Y também pula) | Cross (Triangle também pula) |
-| Dash | X ou B | Square ou Circle |
-| Agarrar | LB/RB/LT/RT | L1/R1/L2/R2 |
-| Pausa | Menu/Start | Options |
+1440p e 2160p são resoluções de composição/saída, não artes refeitas: a pixel art interna original continua 320×180. Qualidade controla precisão de blur 9/5/3 amostras, mantendo efeitos e todo conteúdo. Fallback nativo caso o alvo não possa ser alocado.
 
-Ajustes de botões pelo menu original. Ícones ainda usam Xbox. Touch e LOG/FPS permanecem. Mesmo ZIP; instale por cima para preservar dados. 124 verificações locais passaram; isso não comprova cada modelo de controle.
+LOG e FPS abrem painéis arrastáveis e fecháveis em ×. FPS mostra também frequência da lógica e saída atual. GPU permanece indisponível.
 
-## V0.8 — FMOD e correção de seleção de controle
+149 verificações locais passaram e a composição foi exercitada em OpenGL desktop por software nas cinco saídas, incluindo 4K. Não é medição de FPS Android nem validação completa da campanha.
 
-[Baixar v0.8](https://raw.githubusercontent.com/tgparkinguniversal-hue/celeste/main/celeste-download/celeste-android-audio-test-v0.8.apk). SDK FMOD Studio Android ARM64 1.10.20 fornecido pelo usuário integrado no aplicativo. Escolha Iniciar teste COM ÁUDIO (FMOD); SEM ÁUDIO continua como fallback. Som ainda não confirmado em aparelho. Mesmo ZIP e assinatura. FMOD Studio / Firelight Technologies Pty Ltd; atribuição no launcher e EULA dentro do APK. SDK completo não redistribuído.
+## Dados
 
-Seleção de controle agora segue botão/movimento real em vez de ignorar dispositivos diferentes do primeiro listado. LOG inclui identificação do dispositivo e eventos de botões/eixos para investigação. Causa do problema relatado no telefone ainda depende dos eventos; não é garantia de compatibilidade com todo controle.
+Os 1.211 arquivos originais continuam em 19 partes por limite do GitHub. [Página de downloads](https://tgparkinguniversal-hue.github.io/celeste/celeste-download/) reúne e verifica as partes em ZIP. Não extraia o ZIP; use Importar dados originais. Não precisa baixar novamente se já importou.
+
+FMOD Studio — Firelight Technologies Pty Ltd. Runtime 1.10.20 integrado, atribuição no aplicativo e EULA embutida. SDK completo não redistribuído.
