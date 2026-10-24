@@ -1,6 +1,6 @@
-# Celeste Android — v0.11 experimental
+# Celeste Android — v0.12 experimental
 
-[Baixar APK v0.11](https://raw.githubusercontent.com/tgparkinguniversal-hue/celeste/main/celeste-download/celeste-android-mobile-test-v0.11.apk) · aproximadamente 93 MB
+[Baixar APK v0.12](https://raw.githubusercontent.com/tgparkinguniversal-hue/celeste/main/celeste-download/celeste-android-mobile-test-v0.12.apk) · aproximadamente 93 MB
 
 Instale por cima da versão anterior, sem desinstalar. Mesmo ZIP de dados e progresso. Novo ícone de morango original e tela inicial temática com montanhas, cards e botão Jogar. O seletor sem áudio foi removido; Jogar usa o FMOD.
 
@@ -16,14 +16,18 @@ FPS abre o monitor compacto de texto monospace, com gráfico de frame time recen
 
 Novas instalações começam em 60 FPS; escolhas explícitas anteriores são mantidas. Opções 60/90/120, nativa/720p/1080p/1440p/2160p e precisão de blur Original/Equilibrada/Desempenho continuam. A lógica permanece 60 Hz sem interpolação de movimento; pixel art interna original 320×180. Saída maior que limite de GPU conhecido retorna a nativa; inicialização interrompida pode restaurar vídeo nativo/60, sem alterar saves.
 
-ARM64, Android 7/API 24+, OpenGL ES 3. Outras famílias de GPU/aparelhos ainda requerem teste físico; não é certificação universal. 159 checks existentes, sete verificações novas do monitor (serviços Android stubados) e assinatura/integridade do APK passaram; provas gráficas da v0.10 continuam como evidência anterior, sem repetir benchmark; aparência e gestos da UI Android ainda precisam validação no aparelho.
+ARM64, Android 7/API 24+, OpenGL ES 3. Outras famílias de GPU/aparelhos ainda requerem teste físico; não é certificação universal. 173 checks existentes, incluindo 14 novos de backup, e sete verificações do monitor (serviços Android stubados) e assinatura/integridade do APK passaram; provas gráficas da v0.10 continuam como evidência anterior, sem repetir benchmark; aparência e gestos da UI Android ainda precisam validação no aparelho.
 
 ## Dados e suporte
 
 Se já importou, não baixe novamente. Para instalação nova, a [página de downloads](https://tgparkinguniversal-hue.github.io/celeste/celeste-download/) reúne as 19 partes em ZIP com hashes; use Importar dados do jogo e não extraia o ZIP. Exportar relatório inclui versão, driver/configuração e logs.
 
-[Plano completo de conclusão](PLANO-COMPLETO-v0.9.md). Backups de saves, campanha completa e compatibilidade ampliada continuam pendentes. Nenhum conteúdo de fase/arte/mecânica foi removido nesta atualização.
+[Plano completo de conclusão](PLANO-COMPLETO-v0.9.md). Backups agora disponíveis; validação de campanha completa e compatibilidade ampliada continuam pendentes. Nenhum conteúdo de fase/arte/mecânica foi removido nesta atualização.
 
 FMOD Studio — Firelight Technologies Pty Ltd. Atribuição no aplicativo e EULA embutida. SDK completo não redistribuído.
 
-Na v0.11 o monitor evita coleta de histórico quando fechado, mantém opções em memória e suspende atualizações ao ficar em segundo plano. Não há medição de ganho de FPS em aparelho nesta sessão. Nenhum conteúdo do jogo foi removido.
+Na v0.12 o monitor evita coleta de histórico quando fechado, mantém opções em memória e suspende atualizações ao ficar em segundo plano. Não há medição de ganho de FPS em aparelho nesta sessão. Nenhum conteúdo do jogo foi removido.
+
+## Backup do progresso v0.12
+
+Antes de Jogar, escolha **Exportar backup do progresso** e salve o ZIP fora do app. **Restaurar backup do progresso** valida um ZIP exportado por este recurso, lista arquivos e pede confirmação antes de substituir. Outros slots são mantidos se ausentes do arquivo. Exporte seu progresso atual antes de restaurar um mais antigo. Não desinstale para atualizar. O ZIP de saves é separado do ZIP de Content; não inclui layouts Android ou estatísticas locais. Arquivos inválidos são rejeitados e restauração interrompida tem rollback no próximo launcher. Validação em aparelho ainda necessária; [detalhes e limites](ANDROID-v0.12.md).
