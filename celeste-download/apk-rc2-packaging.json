@@ -1,0 +1,175 @@
+{
+  "versionCode": 16,
+  "versionName": "1.0.0-rc2",
+  "configuration": "Release",
+  "bytes": 25790346,
+  "sha256": "531f65742e5cf82e137b1dca4ba368b380d76adea99f3b976a89f55269e7943d",
+  "zipIntegrity": true,
+  "fmodUnchanged": true,
+  "fmodJavaPresent": true,
+  "symbolsExcluded": true,
+  "checks": 199,
+  "priorRc1GraphicsProofCases": 7,
+  "native16K": false,
+  "native16KScope": "Static program headers only. False means runtime migration required for guaranteed native16K support. No physical-device certification.",
+  "libraries": [
+    {
+      "library": "lib/arm64-v8a/libxamarin-app.so",
+      "allSegments16KAligned": true,
+      "segments": [
+        {
+          "alignment": 65536,
+          "congruent16K": true
+        },
+        {
+          "alignment": 65536,
+          "congruent16K": true
+        },
+        {
+          "alignment": 65536,
+          "congruent16K": true
+        },
+        {
+          "alignment": 65536,
+          "congruent16K": true
+        }
+      ]
+    },
+    {
+      "library": "lib/arm64-v8a/libSystem.IO.Compression.Native.so",
+      "allSegments16KAligned": false,
+      "segments": [
+        {
+          "alignment": 4096,
+          "congruent16K": true
+        },
+        {
+          "alignment": 4096,
+          "congruent16K": false
+        },
+        {
+          "alignment": 4096,
+          "congruent16K": false
+        }
+      ]
+    },
+    {
+      "library": "lib/arm64-v8a/libSystem.Native.so",
+      "allSegments16KAligned": false,
+      "segments": [
+        {
+          "alignment": 4096,
+          "congruent16K": true
+        },
+        {
+          "alignment": 4096,
+          "congruent16K": false
+        },
+        {
+          "alignment": 4096,
+          "congruent16K": false
+        }
+      ]
+    },
+    {
+      "library": "lib/arm64-v8a/libSystem.Security.Cryptography.Native.Android.so",
+      "allSegments16KAligned": false,
+      "segments": [
+        {
+          "alignment": 4096,
+          "congruent16K": true
+        },
+        {
+          "alignment": 4096,
+          "congruent16K": false
+        },
+        {
+          "alignment": 4096,
+          "congruent16K": false
+        }
+      ]
+    },
+    {
+      "library": "lib/arm64-v8a/libmono-component-marshal-ilgen.so",
+      "allSegments16KAligned": false,
+      "segments": [
+        {
+          "alignment": 4096,
+          "congruent16K": true
+        },
+        {
+          "alignment": 4096,
+          "congruent16K": false
+        },
+        {
+          "alignment": 4096,
+          "congruent16K": false
+        }
+      ]
+    },
+    {
+      "library": "lib/arm64-v8a/libmonosgen-2.0.so",
+      "allSegments16KAligned": false,
+      "segments": [
+        {
+          "alignment": 4096,
+          "congruent16K": true
+        },
+        {
+          "alignment": 4096,
+          "congruent16K": false
+        },
+        {
+          "alignment": 4096,
+          "congruent16K": false
+        }
+      ]
+    },
+    {
+      "library": "lib/arm64-v8a/libmonodroid.so",
+      "allSegments16KAligned": false,
+      "segments": [
+        {
+          "alignment": 4096,
+          "congruent16K": true
+        },
+        {
+          "alignment": 4096,
+          "congruent16K": false
+        },
+        {
+          "alignment": 4096,
+          "congruent16K": false
+        }
+      ]
+    },
+    {
+      "library": "lib/arm64-v8a/libfmod.so",
+      "allSegments16KAligned": true,
+      "segments": [
+        {
+          "alignment": 65536,
+          "congruent16K": true
+        },
+        {
+          "alignment": 65536,
+          "congruent16K": true
+        }
+      ]
+    },
+    {
+      "library": "lib/arm64-v8a/libfmodstudio.so",
+      "allSegments16KAligned": true,
+      "segments": [
+        {
+          "alignment": 65536,
+          "congruent16K": true
+        },
+        {
+          "alignment": 65536,
+          "congruent16K": true
+        }
+      ]
+    }
+  ]
+}

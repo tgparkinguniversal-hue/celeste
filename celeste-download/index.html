@@ -1,5 +1,40 @@
-<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Celeste Android — teste</title><style>body{font:18px system-ui;background:#151b30;color:white;max-width:650px;margin:40px auto;padding:20px}a,button{display:block;background:#abd8ff;color:#10152b;padding:16px;border:0;border-radius:8px;margin:20px 0;font:inherit;text-decoration:none}button:disabled{opacity:.6}p{line-height:1.5}</style><h1>Celeste Android — 1.0.0-rc1</h1><p>Candidata final: pacote Release 72% menor, vídeo seguro nativo/60, recuperação da saída sob pressão de memória e diagnóstico de compatibilidade. Editor, áudio, backup e checklist mantidos. Exportação e restauração de backup do progresso pelo menu inicial mantidas. Guarde um ZIP dos seus saves fora do app. Ative LOG e monitor FPS no menu antes de Jogar. Escolha métricas, aparência e posição inicial. Monitor com menor coleta quando fechado e atualizações suspensas em segundo plano. GPU é N/D quando não há contador confiável.</p><p>Instale por cima, sem desinstalar. Mesmo ZIP: se já importou os dados, só precisa do APK. No app, toque em <b>Jogar</b>, com áudio FMOD. Abra <b>Personalizar controles na tela</b> ou <b>FPS, LOG e layout antes de jogar</b> para ajustar a interface.</p><p>ARM64, Android 7+, OpenGL ES 3. Candidata ainda exige validação da campanha e dos aparelhos. Suporte nativo a páginas de memória de 16 KB permanece pendente no runtime .NET. Apresentação até 120 FPS com lógica 60 Hz, sem interpolação; saída até 2160p preserva pixel art interna original.</p><a href="https://github.com/tgparkinguniversal-hue/celeste/raw/refs/heads/main/celeste-download/celeste-android-1.0.0-rc1.apk">1. Baixar APK — 26 MB</a><button id="data">2. Preparar ZIP dos dados — 894 MB</button><p id="status">Use Wi-Fi e deixe esta página aberta. A preparação dos dados pode consumir bastante memória no navegador.</p><p>Instale o APK, escolha <b>Importar dados originais</b>, selecione o ZIP baixado e toque em <b>Jogar</b>. Não extraia o ZIP. Mecânicas sincronizadas com áudio podem apresentar diferenças.</p><script>
+<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Celeste Android — downloads</title>
+<style>[hidden]{display:none!important}body{font:18px system-ui;background:#151b30;color:white;max-width:700px;margin:32px auto;padding:20px}a,button{display:block;background:#abd8ff;color:#10152b;padding:16px;border:0;border-radius:8px;margin:20px 0;font:inherit;text-decoration:none}button:disabled{opacity:.6}p{line-height:1.5}label{display:block;font-size:15px}small{color:#c5d1e5}</style>
+<h1>Celeste Android — 1.0.0-rc2</h1>
+<p>Agora é possível ocultar toda a barra LOG/FPS/EDITAR pelo × ou nas configurações. Reative por <b>Pausa → Ferramentas mobile</b>. Cada atalho também pode ser desativado separadamente; controles de jogar permanecem independentes.</p>
+<a href="https://raw.githubusercontent.com/tgparkinguniversal-hue/celeste/main/celeste-download/celeste-android-1.0.0-rc2.apk">1. Baixar APK — 26 MB</a>
+<p>Instale por cima, sem desinstalar. Se os dados já foram importados, <b>só precisa atualizar o APK</b>. Não é necessário baixar o novo ZIP para jogar.</p>
+<h2>Dados originais — ZIP otimizado</h2><p><b>865,65 MB</b>, com os mesmos 1.211 arquivos. Economia de 28,32 MB (3,17%) por compressão sem perdas. Os bancos de áudio já estão comprimidos; nada foi removido, convertido ou reduzido em qualidade.</p>
+<label><input type="checkbox" id="memory"> Usar método antigo em memória (se o cache do navegador falhar)</label>
+<button id="data">2. Preparar ZIP otimizado — 866 MB</button>
+<p id="status" role="status" aria-live="polite">Use Wi-Fi e mantenha a página aberta. Quando disponível, o navegador prepara o ZIP em armazenamento temporário para reduzir o uso de RAM. Reserve espaço para o ZIP temporário e o arquivo baixado.</p>
+<a id="save" hidden>Salvar ZIP otimizado</a><button id="cleanup" hidden>Limpar cópia temporária do navegador</button>
+<p>Depois de salvar o ZIP, importe-o no aplicativo sem extrair. O ZIP antigo continua compatível. Só limpe a cópia temporária depois que o download terminar.</p>
+<a href="legacy-download.html">Alternativa: baixar o ZIP anterior — 894 MB</a>
+<small>ARM64, Android 7+, OpenGL ES 3. Versão candidata: campanha e outros aparelhos ainda precisam validação. Suporte nativo a páginas de memória de 16 KB permanece pendente. GPU no monitor é N/D quando não há contador confiável.</small>
+<script type="module">
+import {transferParts} from './zip-download.mjs';
 const base='https://raw.githubusercontent.com/tgparkinguniversal-hue/celeste/main/celeste-download/';
-const btn=document.getElementById('data'),status=document.getElementById('status');
-btn.onclick=async()=>{btn.disabled=true;try{let r=await fetch(base+'parts.json');if(!r.ok)throw Error('Lista indisponível');const parts=await r.json(),buffers=[];for(let i=0;i<parts.length;i++){status.textContent=`Baixando parte ${i+1} de ${parts.length}. Aguarde…`;r=await fetch(base+parts[i].name);if(!r.ok)throw Error('Falha na parte '+(i+1));const b=await r.arrayBuffer();if(b.byteLength!==parts[i].size)throw Error('Parte incompleta');const h=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',b))).map(x=>x.toString(16).padStart(2,'0')).join('');if(h!==parts[i].sha256)throw Error('Integridade inválida');buffers.push(b)}const blob=new Blob(buffers,{type:'application/zip'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='celeste-original-content-private.zip';a.textContent='Salvar ZIP dos dados — toque aqui';document.body.append(a);a.click();status.textContent='Dados reunidos e verificados. Use o botão Salvar ZIP caso o download não comece.'}catch(e){status.textContent='Não foi possível concluir: '+e.message+'. Tente novamente com a página aberta e memória disponível.'}finally{btn.disabled=false}};
+const btn=document.getElementById('data'),status=document.getElementById('status'),save=document.getElementById('save'),cleanup=document.getElementById('cleanup'),memory=document.getElementById('memory');
+let url,temporaryRoot,temporaryName;
+btn.onclick=async()=>{
+ btn.disabled=true;cleanup.hidden=true;save.hidden=true;let writer;
+ try{
+  const response=await fetch(base+'parts-optimized-v1.json');if(!response.ok)throw Error('Lista de partes indisponível');const parts=await response.json();
+  const buffers=[];let sink,blob;
+  if(!memory.checked&&navigator.storage?.getDirectory){
+   temporaryRoot=await navigator.storage.getDirectory();temporaryName='celeste-content-optimized-v1.zip';
+   const file=await temporaryRoot.getFileHandle(temporaryName,{create:true});writer=await file.createWritable();sink=writer;
+   const total=await transferParts(parts,sink,{fetchPart:name=>fetch(base+name),progress:(i,n)=>status.textContent=`Verificando e gravando parte ${i+1} de ${n} no cache em disco…`});
+   await writer.close();writer=null;blob=await file.getFile();if(blob.size!==total)throw Error('ZIP temporário incompleto');cleanup.hidden=false;
+  }else{
+   sink={write:async bytes=>buffers.push(bytes)};
+   await transferParts(parts,sink,{fetchPart:name=>fetch(base+name),progress:(i,n)=>status.textContent=`Preparando parte ${i+1} de ${n} em memória. Este método pode consumir bastante RAM…`});
+   blob=new Blob(buffers,{type:'application/zip'});
+  }
+  cleanup.hidden=!(temporaryRoot&&temporaryName);if(url)URL.revokeObjectURL(url);url=URL.createObjectURL(blob);save.href=url;save.download='celeste-content-optimized-v1.zip';save.textContent='Salvar ZIP otimizado — toque aqui';save.hidden=false;save.click();status.textContent=parts.length+' partes conferidas por SHA-256. Se o download não iniciar, toque em Salvar ZIP otimizado.';
+ }catch(error){if(writer)try{await writer.abort();}catch{}status.textContent='Não foi possível preparar: '+error.message+'. Confira o espaço livre; se o cache falhar, marque o método antigo em memória e tente novamente.';if(temporaryRoot&&temporaryName)cleanup.hidden=false;}
+ finally{btn.disabled=false;}
+};
+cleanup.onclick=async()=>{try{if(url){URL.revokeObjectURL(url);url=null;}save.hidden=true;await temporaryRoot.removeEntry(temporaryName);temporaryRoot=null;temporaryName=null;cleanup.hidden=true;status.textContent='Cópia temporária removida. O arquivo já salvo em Downloads permanece.';}catch(error){status.textContent='Falha limpando cache: '+error.message;}};
 </script></html>

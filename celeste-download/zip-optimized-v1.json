@@ -1,0 +1,13 @@
+{
+  "format": "ZIP standard deflate, raw stream reused when smaller",
+  "files": 1211,
+  "originalZipBytes": 893967893,
+  "optimizedZipBytes": 865649644,
+  "savedBytes": 28318249,
+  "sha256": "fe80432cb0e50ae84f3255dc1b543e9ee67279a195ee7e7aeef2e93131267ae8",
+  "parts": 19,
+  "validation": "All 1211 extracted SHA-256 hashes and sizes match original catalog; part hashes and full archive hash verified.",
+  "expandedBytes": 1158620133,
+  "dotnetValidation": "1211 files, all expanded sizes and SHA-256 hashes matched using .NET ZipArchive",
+  "manifest": "parts-optimized-v1.json"
+}
