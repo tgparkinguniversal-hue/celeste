@@ -1,0 +1,9 @@
+# Android v0.11 — FPS e LOG antes de iniciar
+
+No launcher, “FPS, LOG e layout antes de jogar” permite escolher Abrir LOG e Abrir monitor FPS ao iniciar. São preferências independentes, inicialmente desativadas, persistidas por SharedPreferences e lidas antes de Game.Run. Métricas/fonte/cor/opacidade/intervalo continuam editáveis. Posições iniciais em quatro cantos: monitor no canto escolhido, log no canto horizontalmente oposto para reduzir sobreposição; manter posições salvas preserva arrastes. × fecha apenas o painel atual, sem alterar a preferência de início da próxima sessão.
+
+⚙ durante a partida aplica alterações de aparência sem reiniciar, reinicia amostragem e relê posições. Opções de abrir ao iniciar valem para a próxima partida. Posição padrão do monitor foi separada da posição do log.
+
+Otimizações: configuração do OSD em memória, sem reconstruir OsdOptions/consultar todas as preferências a cada tick; coleta de intervalos e contadores de apresentação/simulação desativada quando monitor fechado; histórico limitado a 120; sem copiar gráfico quando opção desativada; média/P95 só calculados se FPS selecionado. Callbacks do monitor pausam ao entrar em segundo plano e retomam com amostra limpa. Não altera relógio da simulação, assets, fases, saves ou áudio. CPU% é do processo por núcleo; GPU permanece N/D. Não é promessa de aumento medido de FPS.
+
+Verificação: 159 checks existentes e 7 novos do código real PerformanceMonitor (serviços Android stubados em host), 6 mappings/rejeição MonoGame. Build Android zero erros/52 avisos. Integridade ZIP, FMOD binariamente inalterado e assinatura v2/v3 verificadas. VersionCode 11, applicationId/chave iguais aos anteriores. Sem teste físico da interface, lifecycle ou benchmark nesta sessão; campanha e compatibilidade completa continuam pendentes. Mesmo ZIP de Content, não requer reimportação em atualizações.
