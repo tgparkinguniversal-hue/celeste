@@ -1,10 +1,10 @@
 # Celeste Android experimental sem áudio
 
-[Baixar APK](https://github.com/tgparkinguniversal-hue/celeste/raw/refs/heads/main/celeste-download/celeste-android-silent-test-v0.7.apk)
+[Baixar APK](https://github.com/tgparkinguniversal-hue/celeste/raw/refs/heads/main/celeste-download/celeste-android-audio-test-v0.8.apk)
 
 Os dados estão divididos em partes por causa do limite de tamanho do GitHub. A página index.html baixa e verifica cada parte e oferece o ZIP completo. O APK exige esse ZIP em Importar dados originais. Ainda não validado em aparelho Android.
 
-Na v0.7, use LOG para abrir/fechar o painel de mensagens; arraste o cabeçalho para movê-lo. Ajustado o ciclo de vida de inicialização Android. Instale por cima, sem desinstalar, para preservar os dados importados.
+Na v0.8, use LOG para abrir/fechar o painel de mensagens; arraste o cabeçalho para movê-lo. Ajustado o ciclo de vida de inicialização Android. Instale por cima, sem desinstalar, para preservar os dados importados.
 
 V0.6: corrigido suporte Min/Max na mistura da iluminação e brilho no backend Android do MonoGame. Novo botão FPS ao lado de LOG: FPS, RAM PSS, CPU do processo; GPU indisponível. Painéis arrastáveis pelo título, fecham em ×. Mesmo ZIP. A correção ainda precisa de teste em aparelho.
 
@@ -21,3 +21,9 @@ Conecte um controle reconhecido pelo Android via Bluetooth ou USB/OTG antes de i
 | Pausa | Menu/Start | Options |
 
 Ajustes de botões pelo menu original. Ícones ainda usam Xbox. Touch e LOG/FPS permanecem. Mesmo ZIP; instale por cima para preservar dados. 124 verificações locais passaram; isso não comprova cada modelo de controle.
+
+## V0.8 — FMOD e correção de seleção de controle
+
+[Baixar v0.8](https://raw.githubusercontent.com/tgparkinguniversal-hue/celeste/main/celeste-download/celeste-android-audio-test-v0.8.apk). SDK FMOD Studio Android ARM64 1.10.20 fornecido pelo usuário integrado no aplicativo. Escolha Iniciar teste COM ÁUDIO (FMOD); SEM ÁUDIO continua como fallback. Som ainda não confirmado em aparelho. Mesmo ZIP e assinatura. FMOD Studio / Firelight Technologies Pty Ltd; atribuição no launcher e EULA dentro do APK. SDK completo não redistribuído.
+
+Seleção de controle agora segue botão/movimento real em vez de ignorar dispositivos diferentes do primeiro listado. LOG inclui identificação do dispositivo e eventos de botões/eixos para investigação. Causa do problema relatado no telefone ainda depende dos eventos; não é garantia de compatibilidade com todo controle.
