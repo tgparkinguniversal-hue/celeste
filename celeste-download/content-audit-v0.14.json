@@ -1,0 +1,310 @@
+{
+  "scope": "Static original-map inventory and Level switch-label comparison only. Unmatched names may be processed by LevelData/MapData; not proof of missing mechanics or full gameplay.",
+  "mapCount": 27,
+  "rooms": 824,
+  "entities": 56440,
+  "triggers": 1274,
+  "typeCount": 178,
+  "unmatched": {
+    "player": 1559,
+    "theoCrystalHoldingBarrier": 15
+  },
+  "maps": [
+    {
+      "map": "0-Intro.bin",
+      "rooms": 7
+    },
+    {
+      "map": "1-ForsakenCity.bin",
+      "rooms": 38
+    },
+    {
+      "map": "1H-ForsakenCity.bin",
+      "rooms": 16
+    },
+    {
+      "map": "1X-ForsakenCity.bin",
+      "rooms": 3
+    },
+    {
+      "map": "2-OldSite.bin",
+      "rooms": 45
+    },
+    {
+      "map": "2H-OldSite.bin",
+      "rooms": 17
+    },
+    {
+      "map": "2X-OldSite.bin",
+      "rooms": 3
+    },
+    {
+      "map": "3-CelestialResort.bin",
+      "rooms": 65
+    },
+    {
+      "map": "3H-CelestialResort.bin",
+      "rooms": 24
+    },
+    {
+      "map": "3X-CelestialResort.bin",
+      "rooms": 4
+    },
+    {
+      "map": "4-GoldenRidge.bin",
+      "rooms": 49
+    },
+    {
+      "map": "4H-GoldenRidge.bin",
+      "rooms": 20
+    },
+    {
+      "map": "4X-GoldenRidge.bin",
+      "rooms": 3
+    },
+    {
+      "map": "5-MirrorTemple.bin",
+      "rooms": 85
+    },
+    {
+      "map": "5H-MirrorTemple.bin",
+      "rooms": 25
+    },
+    {
+      "map": "5X-MirrorTemple.bin",
+      "rooms": 3
+    },
+    {
+      "map": "6-Reflection.bin",
+      "rooms": 64
+    },
+    {
+      "map": "6H-Reflection.bin",
+      "rooms": 28
+    },
+    {
+      "map": "6X-Reflection.bin",
+      "rooms": 3
+    },
+    {
+      "map": "7-Summit.bin",
+      "rooms": 107
+    },
+    {
+      "map": "7H-Summit.bin",
+      "rooms": 29
+    },
+    {
+      "map": "7X-Summit.bin",
+      "rooms": 3
+    },
+    {
+      "map": "8-Epilogue.bin",
+      "rooms": 4
+    },
+    {
+      "map": "9-Core.bin",
+      "rooms": 39
+    },
+    {
+      "map": "9H-Core.bin",
+      "rooms": 23
+    },
+    {
+      "map": "9X-Core.bin",
+      "rooms": 4
+    },
+    {
+      "map": "LostLevels.bin",
+      "rooms": 113
+    }
+  ],
+  "types": {
+    "altMusicTrigger": 1,
+    "ambienceParamTrigger": 7,
+    "badelineBoost": 42,
+    "bigSpinner": 151,
+    "bigWaterfall": 23,
+    "bird": 14,
+    "birdForsakenCityGem": 1,
+    "birdPath": 3,
+    "birdPathTrigger": 1,
+    "blackGem": 24,
+    "blackholeStrength": 4,
+    "blockField": 25,
+    "bloomFadeTrigger": 22,
+    "bonfire": 8,
+    "booster": 303,
+    "bounceBlock": 79,
+    "bridge": 1,
+    "bridgeFixed": 2,
+    "cameraAdvanceTargetTrigger": 4,
+    "cameraOffsetTrigger": 490,
+    "cameraTargetTrigger": 351,
+    "cassette": 8,
+    "cassetteBlock": 199,
+    "changeRespawnTrigger": 110,
+    "checkpoint": 61,
+    "checkpointBlockerTrigger": 1,
+    "cliffflag": 41,
+    "cliffside_flag": 197,
+    "clothesline": 49,
+    "cloud": 93,
+    "clutterCabinet": 72,
+    "clutterDoor": 3,
+    "cobweb": 217,
+    "colorSwitch": 3,
+    "conditionBlock": 5,
+    "coreMessage": 5,
+    "coreModeToggle": 87,
+    "coverupWall": 17,
+    "creditsTrigger": 7,
+    "crumbleBlock": 161,
+    "crumbleWallOnRumble": 138,
+    "crushBlock": 36,
+    "cutsceneNode": 2,
+    "darkChaser": 25,
+    "dashBlock": 109,
+    "dashSwitchH": 15,
+    "dashSwitchV": 39,
+    "detachFollowersTrigger": 1,
+    "door": 56,
+    "dreamBlock": 219,
+    "dreammirror": 1,
+    "eventTrigger": 23,
+    "exitBlock": 73,
+    "eyebomb": 52,
+    "fakeWall": 65,
+    "fallingBlock": 188,
+    "finalBoss": 29,
+    "finalBossFallingBlock": 87,
+    "finalBossMovingBlock": 24,
+    "fireBall": 156,
+    "fireBarrier": 47,
+    "flingBird": 36,
+    "flingBirdIntro": 2,
+    "floatingDebris": 2056,
+    "floatySpaceBlock": 339,
+    "flutterbird": 81,
+    "foregroundDebris": 13,
+    "friendlyGhost": 14,
+    "glider": 33,
+    "goldenBerry": 25,
+    "goldenBerryCollectTrigger": 11,
+    "gondola": 2,
+    "greenBlocks": 168,
+    "hahaha": 1,
+    "hanginglamp": 37,
+    "heartGemDoor": 4,
+    "iceBlock": 15,
+    "infiniteStar": 128,
+    "interactTrigger": 6,
+    "introCar": 5,
+    "introCrusher": 1,
+    "invisibleBarrier": 159,
+    "jumpThru": 876,
+    "kevins_pc": 1,
+    "key": 18,
+    "killbox": 29,
+    "lamp": 14,
+    "lightbeam": 19,
+    "lightFadeTrigger": 27,
+    "lightning": 1862,
+    "lightningBlock": 14,
+    "lockBlock": 19,
+    "lookoutBlocker": 13,
+    "memorial": 5,
+    "memorialTextController": 1,
+    "minitextboxTrigger": 13,
+    "moonCreature": 23,
+    "moonGlitchBackgroundTrigger": 10,
+    "moveBlock": 63,
+    "movingPlatform": 22,
+    "musicFadeTrigger": 19,
+    "musicTrigger": 4,
+    "noRefillTrigger": 15,
+    "npc": 30,
+    "oshirodoor": 1,
+    "oshiroTrigger": 1,
+    "payphone": 3,
+    "picoconsole": 1,
+    "plateau": 1,
+    "playbackBillboard": 32,
+    "playbackTutorial": 3,
+    "player": 1559,
+    "playerSeeker": 1,
+    "powerSourceNumber": 5,
+    "redBlocks": 162,
+    "refill": 620,
+    "reflectionHeartStatue": 1,
+    "resortLantern": 111,
+    "resortmirror": 1,
+    "resortRoofEnding": 1,
+    "respawnTargetTrigger": 12,
+    "ridgeGate": 5,
+    "risingLava": 12,
+    "rotateSpinner": 53,
+    "rumbleTrigger": 51,
+    "sandwichLava": 10,
+    "seeker": 36,
+    "seekerBarrier": 90,
+    "seekerStatue": 1,
+    "sinkingPlatform": 25,
+    "soundSource": 124,
+    "spawnFacingTrigger": 5,
+    "spikesDown": 301,
+    "spikesLeft": 532,
+    "spikesRight": 420,
+    "spikesUp": 1988,
+    "spinner": 36938,
+    "spring": 220,
+    "starJumpBlock": 60,
+    "strawberry": 176,
+    "SummitBackgroundManager": 16,
+    "summitcheckpoint": 50,
+    "summitcloud": 30,
+    "summitgem": 6,
+    "summitGemManager": 1,
+    "swapBlock": 167,
+    "switchGate": 72,
+    "templeBigEyeball": 1,
+    "templeCrackedBlock": 35,
+    "templeEye": 562,
+    "templeGate": 136,
+    "templeMirror": 3,
+    "templeMirrorPortal": 2,
+    "tentacles": 34,
+    "theoCrystal": 18,
+    "theoCrystalHoldingBarrier": 15,
+    "theoCrystalPedestal": 1,
+    "torch": 605,
+    "touchSwitch": 201,
+    "towerviewer": 82,
+    "trackSpinner": 387,
+    "trapdoor": 8,
+    "triggerSpikesDown": 8,
+    "triggerSpikesLeft": 66,
+    "triggerSpikesRight": 59,
+    "triggerSpikesUp": 60,
+    "wallBooster": 117,
+    "wallSpringLeft": 166,
+    "wallSpringRight": 82,
+    "water": 61,
+    "waterfall": 37,
+    "wavedashmachine": 1,
+    "whiteblock": 1,
+    "windAttackTrigger": 7,
+    "windTrigger": 58,
+    "wire": 181,
+    "yellowBlocks": 190,
+    "zipMover": 116
+  },
+  "baselineComparison": {
+    "removedLevelCaseLabels": [],
+    "addedLevelCaseLabels": [],
+    "notes": {
+      "player": "Processed as spawn positions by LevelData, outside Level switch.",
+      "theoCrystalHoldingBarrier": "Also absent from immutable recovered baseline Level switch. Do not assume a port regression or invent its behavior."
+    }
+  }
+}
