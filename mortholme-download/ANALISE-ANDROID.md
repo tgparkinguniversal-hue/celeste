@@ -32,3 +32,9 @@ Todas as 2.868 entradas originais permanecem no APK. Das entradas originais, 2.8
 5. História completa, ramificações/finais, combate avançado, áudio real, suspensão/retomada, layout no aparelho, outros modelos e desempenho sustentado ainda precisam de teste físico. O teste gráfico usou áudio dummy; não certifica áudio Android. O encerramento de testes desktop reportou recursos/objetos ainda em uso, a investigar em testes de ciclos longos.
 
 Base declarada pelo APK: Android API 21+, ARM64, GLES 3; target API 33. Isso não é certificação de todos esses aparelhos. No POCO F7, o próximo passo é instalar e verificar abertura, menu, diálogos, movimentação, ataque, pausa e som. O APK usa armazenamento privado próprio; Celeste permanece em outro package.
+
+## Atualização v0.2
+
+Mesmo runtime, dados, identidade e certificado; versionCode 2, versionName 0.2-mobile-test. Corrigida a busca do menu de pausa na hierarquia real da cena, liberação de dedos em transições/interrupções e envio de Voltar no início do processamento. Botões compartilham duas texturas, sem mudar as artes originais.
+
+A regressão Linux/Mesa com Godot 4.2.1 passou: menu/tutorial, deslocamento, sinal de ataque, pausa/retomada, dois dedos simultâneos, liberação de ações/botões na perda de foco, esconder controles em segundo plano, preservar pausa ao voltar e simulação de Voltar. Registro: lifecycle-proof.json. A simulação não comprova o comportamento real do sistema Android. Permanecem pendentes áudio/dispositivo/campanha/16 KB e investigação dos avisos de recursos em uso ao encerrar.

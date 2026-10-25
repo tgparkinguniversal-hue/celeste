@@ -1,9 +1,9 @@
 {
   "package": "org.mortholme.experimental.port",
-  "version": "0.1-mobile-test",
+  "version": "0.2-mobile-test",
   "engine": "Godot4.2.1",
   "bytes": 92998907,
-  "sha256": "6223bd53f73cd066a3be94082d0ec098704b9a5aaf44312ac2ffeb55af0cd2fa",
+  "sha256": "319c1f3bc6fb6f1929004704e9c7c6b044090e9850dea55403dde9e411c07eca",
   "originalFilesPreserved": 2868,
   "unchangedOriginalFiles": 2867,
   "modifiedOriginalFile": "project.binary settings only",
@@ -19,5 +19,6 @@
       "minimumLoadAlignment": 4096
     }
   ],
-  "androidDeviceTest": "pending"
+  "androidDeviceTest": "pending",
+  "versionCode": 2
 }

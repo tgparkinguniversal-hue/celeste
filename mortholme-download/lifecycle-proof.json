@@ -1,0 +1,29 @@
+{
+  "android_back_released": true,
+  "android_back_unpaused": true,
+  "attack_signal": 0,
+  "background_controls_hidden": true,
+  "captures": [
+    "lifecycle-title.png",
+    "lifecycle-game.png",
+    "lifecycle-action.png"
+  ],
+  "foreground_menu_control_visible": true,
+  "interruption_paused": true,
+  "interruption_released_actions": true,
+  "interruption_released_native_buttons": true,
+  "mobile_buttons": 9,
+  "pause_closed": true,
+  "pause_opened": true,
+  "queen_force_pause": false,
+  "queen_in_tutorial": false,
+  "queen_position_after": "Vector2(361.921, -34)",
+  "queen_position_before": "Vector2(399, -34)",
+  "queen_present": true,
+  "queen_state": "\"idle\"",
+  "resume_stays_paused": true,
+  "scene_present": true,
+  "scope": "Desktop Godot 4.2.1 OpenGL software test, not Android",
+  "shared_textures": true,
+  "two_fingers_pressed": true
+}

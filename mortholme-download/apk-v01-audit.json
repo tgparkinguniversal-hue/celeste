@@ -1,0 +1,23 @@
+{
+  "package": "org.mortholme.experimental.port",
+  "version": "0.1-mobile-test",
+  "engine": "Godot4.2.1",
+  "bytes": 92998907,
+  "sha256": "6223bd53f73cd066a3be94082d0ec098704b9a5aaf44312ac2ffeb55af0cd2fa",
+  "originalFilesPreserved": 2868,
+  "unchangedOriginalFiles": 2867,
+  "modifiedOriginalFile": "project.binary settings only",
+  "addedFile": "mobile/mobile_controls.gd",
+  "allOriginalAssetHashesMatched": true,
+  "native": [
+    {
+      "path": "lib/arm64-v8a/libc++_shared.so",
+      "minimumLoadAlignment": 4096
+    },
+    {
+      "path": "lib/arm64-v8a/libgodot_android.so",
+      "minimumLoadAlignment": 4096
+    }
+  ],
+  "androidDeviceTest": "pending"
+}
