@@ -1,0 +1,60 @@
+{
+  "buffers": [
+    {
+      "actual": "Vector2i(2560, 1444)",
+      "logical": "Vector2(500, 282)",
+      "requestedWidth": 2560
+    },
+    {
+      "actual": "Vector2i(3840, 2166)",
+      "logical": "Vector2(500, 282)",
+      "requestedWidth": 3840
+    }
+  ],
+  "checks": {
+    "engine_rate_120": true,
+    "engine_rate_60": true,
+    "engine_rate_90": true,
+    "gui_click_scaled_2560": true,
+    "gui_click_scaled_3840": true,
+    "hide_menu_touch_controls": true,
+    "logical_coordinates_2560": true,
+    "logical_coordinates_3840": true,
+    "measured_rate_120": true,
+    "measured_rate_60": true,
+    "measured_rate_90": true,
+    "menu_docking": true,
+    "movement_one_second_60_90_120": true,
+    "preview_auto_rollback": true,
+    "real_buffer_2560": true,
+    "real_buffer_3840": true,
+    "startup_recovery": true,
+    "video_loaded": true
+  },
+  "pacing": [
+    {
+      "measured": 59.8467922119374,
+      "physicsHz": 60,
+      "target": 60,
+      "testOutput": "500x282 software"
+    },
+    {
+      "measured": 90.0032401166442,
+      "physicsHz": 60,
+      "target": 90,
+      "testOutput": "500x282 software"
+    },
+    {
+      "measured": 119.574315437044,
+      "physicsHz": 60,
+      "target": 120,
+      "testOutput": "500x282 software"
+    }
+  ],
+  "queenPositions": [
+    170.000122070312,
+    169.999664306641,
+    169.999755859375
+  ],
+  "scope": "Linux/Mesa, not Android"
+}

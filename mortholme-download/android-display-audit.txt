@@ -1,0 +1,3 @@
+AUDIT_OK originalClassesUnchanged=2109; replaced=GodotApp; finalClasses=2112
+
+The custom Activity was compiled, dex-merged and statically audited. Android execution has not been tested. No new permissions.

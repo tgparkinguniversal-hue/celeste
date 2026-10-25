@@ -1,9 +1,9 @@
 {
   "package": "org.mortholme.experimental.port",
-  "version": "0.4-mobile-test",
+  "version": "0.5-mobile-test",
   "engine": "Godot4.2.1",
-  "bytes": 93011341,
-  "sha256": "2505c07d0effcdfaa64058f01011576100c5db6596782046874a48c35a7e7bcc",
+  "bytes": 93015512,
+  "sha256": "89fda822fb40bd64cf9e028e570117dbe382b3a63be71c6a402c606500ddd347",
   "originalFilesPreserved": 2868,
   "unchangedOriginalFiles": 2867,
   "modifiedOriginalFile": "project.binary settings only",
@@ -19,11 +19,16 @@
     }
   ],
   "androidDeviceTest": "pending",
-  "versionCode": 4,
+  "versionCode": 5,
   "addedFiles": [
     "mobile/mobile_controls.gd",
     "mobile/mobile_ui.gd",
-    "mobile/mobile_skin.gd"
+    "mobile/mobile_skin.gd",
+    "mobile/mobile_video.gd"
   ],
-  "uiChecks": 26
+  "uiChecks": 26,
+  "videoChecks": 18,
+  "unchangedOriginalDexClasses": 2109,
+  "replacedTemplateActivity": "com.godot.game.GodotApp",
+  "androidRefreshBridge": "Compiled/static audited; not device-tested"
 }

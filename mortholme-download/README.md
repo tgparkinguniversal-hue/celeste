@@ -1,6 +1,6 @@
-# The Dark Queen of Mortholme — teste Android v0.4
+# The Dark Queen of Mortholme — teste Android v0.5
 
-[Baixar APK — aproximadamente 93 MB](https://raw.githubusercontent.com/tgparkinguniversal-hue/celeste/main/mortholme-download/mortholme-android-test-v0.4.apk)
+[Baixar APK — aproximadamente 93 MB](https://raw.githubusercontent.com/tgparkinguniversal-hue/celeste/main/mortholme-download/mortholme-android-test-v0.5.apk)
 
 Os dados já estão dentro do APK. Não precisa importar ZIP ou OBB. É aplicativo separado do Celeste. ARM64, Android API 21+, OpenGL ES 3, target 33; compatibilidade real ainda precisa teste em aparelho.
 
@@ -57,3 +57,19 @@ Otimizações: sprites e molduras reaproveitados em cache, sem gerar SVGs para o
 Compatibilidade: controles, editor e painéis consideram a área segura fornecida pelo Android e limitam posições à área disponível; dados de escala/transparência não finitos são descartados ao carregar. Testes com área segura simulada passaram. Isso não certifica todos os recortes, proporções ou modelos. ARM64/GLES3 continuam necessários, e compatibilidade nativa com páginas de16KB segue pendente.
 
 Passaram [26 verificações de interface](ui-proof.json) e a [regressão da partida](lifecycle-proof.json). Capturas desktop: [controles na partida](lifecycle-action.png), [menu](settings-menu.png), [editor](touch-editor.png), [painéis](diagnostics-panels.png). Áudio real, campanha completa, desempenho e estabilidade Android ainda precisam de aparelho. Instale sobre a0.3, sem desinstalar: mesmo pacote/certificado, versionCode4.
+
+## Novidades da v0.5 — vídeo, tela cheia e taxas de quadros
+
+Abra **MOBILE → Vídeo**. Escolha a resolução, os FPS e tela cheia; pressione **Testar configurações (20 s)** e depois **Manter**. Sem confirmação, o vídeo anterior retorna. Fechar os ajustes durante a prévia também reverte. Há um botão para recuperar nativo/60FPS. Uma inicialização interrompida durante a etapa de vídeo retorna a nativo/60FPS no próximo lançamento.
+
+- Nativo/automático usa a área de renderização da janela.
+- 2K e4K usam buffers de largura2560 e3840. No aspecto original, os tamanhos capturados foram **2560×1444** e **3840×2166**. As alturas seguem a proporção do jogo; não esticam para1440/2160. Texturas, sprites e pixel art permanecem originais; a ampliação não cria detalhes novos. Uma tela de resolução menor recebe a imagem redimensionada.
+- 60/90/120 alteram o limite real da engine. A física permanece em60Hz e as animações conservam os quadros originais. O painel distingue alvo, FPS medidos e Hz informados pelo Android, quando disponíveis.
+- Uma extensão da Activity solicita a taxa ao Android usando preferredRefreshRate, preferredDisplayModeId e Surface.setFrameRate quando suportados. Escolhe modos da mesma resolução física da tela. O Android pode limitar a solicitação por painel, bateria, temperatura ou política do fabricante; **não há garantia de120FPS em4K**.
+- Tela cheia solicita ocultar barras do sistema; desligar volta a mostrá-las. O comportamento efetivo das barras e da taxa do painel ainda precisa teste Android.
+
+Na aba **Interface**, escolha menu centralizado/lateral, oculte as setas/OK nos menus e restaure a posição dos painéis. A personalização da partida permanece.
+
+Verificações: [26checks UI](ui-proof.json), [18checks de vídeo](video-proof.json) e regressão com partida/pausa em4K. O teste leve de500×282 em Linux/Mesa mediu **59,8 /90,0 /119,6 FPS**; isso verifica o limitador, não é benchmark do celular ou de4K. A Queen percorreu a mesma distância em1s nas três taxas. Buffers reais e cliques de GUI em2K/4K foram verificados. [Menu de vídeo](video-menu.png), [captura da partida4K](game-4k.png).
+
+A Activity Android foi compilada e auditada, **sem execução em aparelho**;2.109 classes originais foram preservadas na comparação DEX normalizada. Só a Activity do template foi substituída, com auxiliares adicionados, sem novas permissões. Bibliotecas nativas e recursos do jogo preservados. Continuidade da campanha, áudio real, estabilidade Android e compatibilidade nativa16KB permanecem pendentes. Mesma assinatura, versionCode5: instale sobre a0.4.
