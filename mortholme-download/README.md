@@ -1,6 +1,6 @@
-# The Dark Queen of Mortholme — teste Android v0.5
+# The Dark Queen of Mortholme — teste Android v0.6
 
-[Baixar APK — aproximadamente 93 MB](https://raw.githubusercontent.com/tgparkinguniversal-hue/celeste/main/mortholme-download/mortholme-android-test-v0.5.apk)
+[Baixar APK — aproximadamente 93 MB](https://raw.githubusercontent.com/tgparkinguniversal-hue/celeste/main/mortholme-download/mortholme-android-test-v0.6.apk)
 
 Os dados já estão dentro do APK. Não precisa importar ZIP ou OBB. É aplicativo separado do Celeste. ARM64, Android API 21+, OpenGL ES 3, target 33; compatibilidade real ainda precisa teste em aparelho.
 
@@ -75,3 +75,11 @@ Verificações: [26checks UI](ui-proof.json), [18checks de vídeo](video-proof.j
 A Activity Android foi compilada e auditada, **sem execução em aparelho**;2.109 classes originais foram preservadas na comparação DEX normalizada. Só a Activity do template foi substituída, com auxiliares adicionados, sem novas permissões. Bibliotecas nativas e recursos do jogo preservados. Continuidade da campanha, áudio real, estabilidade Android e compatibilidade nativa16KB permanecem pendentes. Mesma assinatura, versionCode5: instale sobre a0.4.
 
 A revisão final da Activity usa DisplayManager.DisplayListener e uma leitura adiada para atualizar os Hz após a transição, evitando exibir indefinidamente o valor anterior à solicitação. Android físico segue pendente.
+
+## v0.6 — menus originais restaurados
+
+Os menus originais de título e pausa voltaram a usar seus temas, fontes, tamanhos e posições. Removida a aplicação da skin mobile nesses menus. [Captura do título original](original-menu.png).
+
+O sistema de checkpoint foi cancelado por solicitação do usuário e **não está incluído**. Não há novas opções de salvar/carregar no jogo. As preferências de controles/vídeo continuam sendo gravadas como antes; isso não é salvamento de progresso.
+
+MOBILE permanece separado, com controles touch, painéis,2K/4K,60/90/120FPS e tela cheia. Bibliotecas/Activity Android da0.5 preservadas. 26checks UI, incluindo menu original, e regressão de partida/pausa/4K passaram em Linux/Mesa. Android físico, campanha completa e16KB permanecem pendentes. Mesmo certificado, versionCode6: instale sobre a0.5.

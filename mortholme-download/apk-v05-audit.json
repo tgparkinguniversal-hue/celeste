@@ -1,0 +1,36 @@
+{
+  "package": "org.mortholme.experimental.port",
+  "version": "0.5-mobile-test",
+  "engine": "Godot4.2.1",
+  "bytes": 93015512,
+  "sha256": "91c8f738088d5d475ad8dcebc728d60beab12d3ecfcd5fe69e2796d2a0edaf4e",
+  "originalFilesPreserved": 2868,
+  "unchangedOriginalFiles": 2867,
+  "modifiedOriginalFile": "project.binary settings only",
+  "allOriginalAssetHashesMatched": true,
+  "native": [
+    {
+      "path": "lib/arm64-v8a/libc++_shared.so",
+      "minimumLoadAlignment": 4096
+    },
+    {
+      "path": "lib/arm64-v8a/libgodot_android.so",
+      "minimumLoadAlignment": 4096
+    }
+  ],
+  "androidDeviceTest": "pending",
+  "versionCode": 5,
+  "addedFiles": [
+    "mobile/mobile_controls.gd",
+    "mobile/mobile_ui.gd",
+    "mobile/mobile_skin.gd",
+    "mobile/mobile_video.gd"
+  ],
+  "uiChecks": 26,
+  "videoChecks": 18,
+  "unchangedOriginalDexClasses": 2109,
+  "replacedTemplateActivity": "com.godot.game.GodotApp",
+  "androidRefreshBridge": "Compiled/static audited; not device-tested",
+  "displayStatus": "DisplayManager listener and deferred read after refresh request",
+  "finalDexClassCount": 2114
+}

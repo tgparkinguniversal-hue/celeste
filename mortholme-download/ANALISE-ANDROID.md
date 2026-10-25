@@ -70,3 +70,9 @@ Java compilado com SDK35/min21, D8 e dexlib2. AuditDex normaliza cada classe DEX
 26checks UI +18checks vídeo e regressão de partida passaram em Linux/Mesa. Limitador medido no teste leve500×282:59.8468/90.0032/119.5743FPS. Queen após1s:170.00012/169.99966/169.99976, sem aceleração ao elevar renderização. Isso não testa todos os ataques/finais nem certifica60/90/120 no dispositivo. Partida capturada em3840×2166 e pausa/retomada nessa resolução passaram; sem benchmark de4K. Fullscreen e mudança física de Hz Android dependem de teste real e políticas do SO.
 
 A revisão final da Activity usa DisplayManager.DisplayListener e uma leitura adiada para atualizar os Hz após a transição, evitando exibir indefinidamente o valor anterior à solicitação. Android físico segue pendente.
+
+## Atualização v0.6 — menus
+
+Removidas a chamada e a função que aplicavam tema mobile aos botões dos menus originais. As cenas e fontes originais nunca foram modificadas nos arquivos; agora também não recebem overrides de tema/tamanho em runtime. UI MOBILE continua com seu tema próprio. Projeto de checkpoint cancelado: componente e hooks ausentes do APK, sem novos itens de salvar/carregar.
+
+26checks UI passaram com original_menu_restored=true. Regressão de menu, tutorial, movimento, ataque, pausa/segundo plano, edição e imagem/pausa4K passou. Escopo de execução Linux/Mesa; não certifica Android físico. Runtime nativo, DEX da0.5 e recursos originais preservados. versionCode6, mesmo certificado.

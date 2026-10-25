@@ -1,9 +1,9 @@
 {
   "package": "org.mortholme.experimental.port",
-  "version": "0.5-mobile-test",
+  "version": "0.6-mobile-test",
   "engine": "Godot4.2.1",
   "bytes": 93015512,
-  "sha256": "91c8f738088d5d475ad8dcebc728d60beab12d3ecfcd5fe69e2796d2a0edaf4e",
+  "sha256": "14de77b6eab65a5ffe3267a826642c3e515b6bb372edd757dd5a2119dce8503c",
   "originalFilesPreserved": 2868,
   "unchangedOriginalFiles": 2867,
   "modifiedOriginalFile": "project.binary settings only",
@@ -19,7 +19,7 @@
     }
   ],
   "androidDeviceTest": "pending",
-  "versionCode": 5,
+  "versionCode": 6,
   "addedFiles": [
     "mobile/mobile_controls.gd",
     "mobile/mobile_ui.gd",
@@ -32,5 +32,7 @@
   "replacedTemplateActivity": "com.godot.game.GodotApp",
   "androidRefreshBridge": "Compiled/static audited; not device-tested",
   "displayStatus": "DisplayManager listener and deferred read after refresh request",
-  "finalDexClassCount": 2114
+  "finalDexClassCount": 2114,
+  "originalMenusRestored": true,
+  "checkpointSystemIncluded": false
 }
