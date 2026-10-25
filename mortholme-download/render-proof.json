@@ -1,0 +1,19 @@
+{
+  "attack_signal": 0,
+  "captures": [
+    "title-mobile.png",
+    "game-mobile.png",
+    "game-action.png"
+  ],
+  "mobile_buttons": 9,
+  "pause_closed": true,
+  "pause_opened": true,
+  "queen_force_pause": false,
+  "queen_in_tutorial": false,
+  "queen_position_after": "Vector2(363.985, -34)",
+  "queen_position_before": "Vector2(399, -34)",
+  "queen_present": true,
+  "queen_state": "\"idle\"",
+  "scene_present": true,
+  "scope": "Desktop Godot 4.2.1 OpenGL software test, not Android"
+}

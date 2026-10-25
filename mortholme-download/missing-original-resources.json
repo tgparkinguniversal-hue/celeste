@@ -1,0 +1,18 @@
+{
+  "scope": "References absent from supplied EXE; observed with exact original engine 4.2.1, before mobile changes.",
+  "count": 12,
+  "resources": [
+    "res://.godot/imported/queendashFX_Layer-20-copy-0.png-fcba5e760ec7f0f9021aefabb1735573.ctex",
+    "res://.godot/imported/queendashFX_Layer-20-copy-1.png-4b48dc910b079f8a7f7fdf00ff5039ec.ctex",
+    "res://.godot/imported/queendashFX_Layer-20-copy-10.png-e77f6fcd569900a764df7c4037e8c388.ctex",
+    "res://.godot/imported/queendashFX_Layer-20-copy-11.png-033665553a0ef678299c3ba272b384c9.ctex",
+    "res://.godot/imported/queendashFX_Layer-20-copy-2.png-f3ae5d3d6217e83bd3bfb12b6bb72517.ctex",
+    "res://.godot/imported/queendashFX_Layer-20-copy-3.png-e8016bbd8b32365e1ce2bae6daf84bc8.ctex",
+    "res://.godot/imported/queendashFX_Layer-20-copy-4.png-aac0e7fd032d7905126c20593fa2dfd9.ctex",
+    "res://.godot/imported/queendashFX_Layer-20-copy-5.png-36f94f41000555234578f5b51a6bb6df.ctex",
+    "res://.godot/imported/queendashFX_Layer-20-copy-6.png-6fec2deccda46a3dfcaeb6a924b10d35.ctex",
+    "res://.godot/imported/queendashFX_Layer-20-copy-7.png-71e304a49cf9e74c88f566aba59abf3b.ctex",
+    "res://.godot/imported/queendashFX_Layer-20-copy-8.png-920ca2c401782e0cb2878b3172884771.ctex",
+    "res://.godot/imported/queendashFX_Layer-20-copy-9.png-3caf31c4faf748a186dc58baa172fd6f.ctex"
+  ]
+}
