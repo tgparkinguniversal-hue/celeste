@@ -1,6 +1,6 @@
-# The Dark Queen of Mortholme — teste Android v0.3
+# The Dark Queen of Mortholme — teste Android v0.4
 
-[Baixar APK — aproximadamente 93 MB](https://raw.githubusercontent.com/tgparkinguniversal-hue/celeste/main/mortholme-download/mortholme-android-test-v0.3.apk)
+[Baixar APK — aproximadamente 93 MB](https://raw.githubusercontent.com/tgparkinguniversal-hue/celeste/main/mortholme-download/mortholme-android-test-v0.4.apk)
 
 Os dados já estão dentro do APK. Não precisa importar ZIP ou OBB. É aplicativo separado do Celeste. ARM64, Android API 21+, OpenGL ES 3, target 33; compatibilidade real ainda precisa teste em aparelho.
 
@@ -43,3 +43,17 @@ A edição mantém a partida pausada e bloqueia os comandos touch do jogo. Fecha
 Verificações: [17 casos da interface](ui-proof.json), regressão de combate/pausa/segundo plano e integração do editor pela pausa original em [lifecycle-proof.json](lifecycle-proof.json), integridade e assinatura do APK. Todos os testes de execução foram em Linux/Mesa; **Android físico, áudio real, campanha completa e suporte nativo 16 KB permanecem pendentes**.
 
 Pode instalar sobre a v0.2: mesmo pacote e certificado, versionCode 3. [Menu](settings-menu.png), [editor](touch-editor.png) e [painéis](diagnostics-panels.png) são capturas do teste desktop, não benchmarks do celular.
+
+## Novidades da v0.4 — pixel art e ergonomia
+
+Controles agora usam sprites pixelados próprios para setas, ataque, investida, magia, confirmação/interação e pausa, com placas em tons de vinho, pedra e ouro. Os menus mobile usam a fonte original e molduras pixeladas; os botões dos menus originais também recebem o tema e uma altura mínima para toque. Os estilos personalizáveis agora são Brasão, Contorno e Placa. Nomes, posições, tamanho e transparência existentes são preservados.
+
+O novo layout padrão coloca interação acima dos ataques e eleva os botões de combate para liberar a barra de vida. Para aplicar em um aparelho com layout antigo salvo, abra MOBILE → Controles → Layout padrão. O direcional aceita deslizar o mesmo dedo entre setas; os ataques continuam sem ativação por simples passagem do dedo.
+
+Os painéis têm tema pixelado, barra visual de FPS, texto compacto e log com quebra de linha. Congelar/Continuar pausa a leitura; Só erros/Todos filtra erros e avisos mantendo linhas de contexto; Seguir controla a rolagem automática. Posição e filtro ficam salvos. O X oculta e a aba Painéis reativa. A opção Painéis econômicos reduz a atualização para uma vez por segundo.
+
+Otimizações: sprites e molduras reaproveitados em cache, sem gerar SVGs para os controles; atualizações de ações/visibilidade apenas quando mudam; remoção da criação de identificadores de cena em texto a cada frame; log sem releitura do conteúdo quando tamanho/data não mudaram, sem leitura congelado e sem coleta oculta. Não houve benchmark em celular para quantificar ganho de FPS/bateria.
+
+Compatibilidade: controles, editor e painéis consideram a área segura fornecida pelo Android e limitam posições à área disponível; dados de escala/transparência não finitos são descartados ao carregar. Testes com área segura simulada passaram. Isso não certifica todos os recortes, proporções ou modelos. ARM64/GLES3 continuam necessários, e compatibilidade nativa com páginas de16KB segue pendente.
+
+Passaram [26 verificações de interface](ui-proof.json) e a [regressão da partida](lifecycle-proof.json). Capturas desktop: [controles na partida](lifecycle-action.png), [menu](settings-menu.png), [editor](touch-editor.png), [painéis](diagnostics-panels.png). Áudio real, campanha completa, desempenho e estabilidade Android ainda precisam de aparelho. Instale sobre a0.3, sem desinstalar: mesmo pacote/certificado, versionCode4.
