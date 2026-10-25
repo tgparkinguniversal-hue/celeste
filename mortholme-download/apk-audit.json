@@ -1,13 +1,12 @@
 {
   "package": "org.mortholme.experimental.port",
-  "version": "0.2-mobile-test",
+  "version": "0.3-mobile-test",
   "engine": "Godot4.2.1",
-  "bytes": 92998907,
-  "sha256": "319c1f3bc6fb6f1929004704e9c7c6b044090e9850dea55403dde9e411c07eca",
+  "bytes": 93007171,
+  "sha256": "392af5d950c189070b282fc28cb1549f8a6d0f2e6a1592741105d951c510cf90",
   "originalFilesPreserved": 2868,
   "unchangedOriginalFiles": 2867,
   "modifiedOriginalFile": "project.binary settings only",
-  "addedFile": "mobile/mobile_controls.gd",
   "allOriginalAssetHashesMatched": true,
   "native": [
     {
@@ -20,5 +19,10 @@
     }
   ],
   "androidDeviceTest": "pending",
-  "versionCode": 2
+  "versionCode": 3,
+  "addedFiles": [
+    "mobile/mobile_controls.gd",
+    "mobile/mobile_ui.gd"
+  ],
+  "uiChecks": 17
 }

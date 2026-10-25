@@ -55,3 +55,4 @@ exclude:
   - "celeste-download/content.zip.part19"
   - "mortholme-download/mortholme-android-test-v0.1.apk"
   - "mortholme-download/mortholme-android-test-v0.2.apk"
+  - "mortholme-download/mortholme-android-test-v0.3.apk"

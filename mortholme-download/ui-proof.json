@@ -1,0 +1,27 @@
+{
+  "captures": [
+    "settings-menu.png",
+    "touch-editor.png",
+    "diagnostics-panels.png"
+  ],
+  "checks": {
+    "back_closes_settings": true,
+    "bounded_utf8_log_tail": true,
+    "cancel_restores_layout": true,
+    "compact_layout": true,
+    "custom_size_alpha_label_shape": true,
+    "drag_button_by_touch": true,
+    "editor_blocks_game_actions": true,
+    "hidden_panels_stop_sampling": true,
+    "menu_open_by_gui": true,
+    "metrics_and_log_populated": true,
+    "mirror_layout": true,
+    "panel_close_by_gui": true,
+    "panel_drag_saved": true,
+    "panels_enabled": true,
+    "persistent_layout_saved": true,
+    "ram_reading": true,
+    "shortcut_in_title": true
+  },
+  "scope": "Godot4.2.1 Linux/Mesa UI regression; not Android"
+}
