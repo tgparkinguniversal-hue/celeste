@@ -3,7 +3,7 @@
   "version": "0.5-mobile-test",
   "engine": "Godot4.2.1",
   "bytes": 93015512,
-  "sha256": "89fda822fb40bd64cf9e028e570117dbe382b3a63be71c6a402c606500ddd347",
+  "sha256": "91c8f738088d5d475ad8dcebc728d60beab12d3ecfcd5fe69e2796d2a0edaf4e",
   "originalFilesPreserved": 2868,
   "unchangedOriginalFiles": 2867,
   "modifiedOriginalFile": "project.binary settings only",
@@ -30,5 +30,7 @@
   "videoChecks": 18,
   "unchangedOriginalDexClasses": 2109,
   "replacedTemplateActivity": "com.godot.game.GodotApp",
-  "androidRefreshBridge": "Compiled/static audited; not device-tested"
+  "androidRefreshBridge": "Compiled/static audited; not device-tested",
+  "displayStatus": "DisplayManager listener and deferred read after refresh request",
+  "finalDexClassCount": 2114
 }
