@@ -1,0 +1,118 @@
+<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>Eixo — teste de caminhão</title>
+<style>*{box-sizing:border-box}body{margin:0;background:#151b19;color:#e9e5cf;font:14px system-ui;overflow:hidden;touch-action:none}canvas{width:100vw;height:100dvh;image-rendering:pixelated;display:block}header{position:absolute;top:18px;left:20px;display:flex;gap:14px;align-items:center;background:#15201de8;border:1px solid #65725a;padding:12px 16px;border-radius:4px}h1{font-size:16px;letter-spacing:4px;margin:0;color:#d8b679}small{color:#a9b39e;font-size:10px;letter-spacing:2px}#speed{font:700 25px monospace;min-width:95px}button{color:#eee9d7;background:#25342be8;border:1px solid #829074;border-radius:9px;font-weight:bold;touch-action:none;user-select:none;cursor:pointer}button.on,button:active{background:#9b7543}#toolbar{position:absolute;right:18px;top:18px;display:flex;gap:8px}#toolbar button{padding:12px}#hint{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);color:#d0d5bc;pointer-events:none;text-align:center;background:#15201dbb;padding:8px 14px;font-size:11px;white-space:nowrap}#touch{position:absolute;inset:0;pointer-events:none}.pad{position:absolute;bottom:65px;display:flex;gap:12px;pointer-events:auto}.pad button{width:68px;height:68px;font-size:20px}.left{left:20px}.right{right:20px}.right button{font-size:13px}#help{position:absolute;inset:0;background:#0b141bd9;display:grid;place-items:center;padding:24px}article{max-width:510px;background:#26352e;border:1px solid #819072;padding:30px;border-radius:8px}article h2{color:#e1c38e}article p{line-height:1.65;color:#d0d7c6}article button{padding:15px 25px;font-size:16px}#stats{font-size:11px;color:#b8c5a6;min-width:95px}@media(max-width:600px){header{left:10px;top:10px;padding:8px;gap:8px}h1{font-size:12px}#stats{display:none}#toolbar{top:10px;right:10px}#toolbar button{padding:9px}#hint{bottom:12px;font-size:9px}.pad button{width:57px;height:60px}.pad{gap:8px;bottom:52px}.left{left:12px}.right{right:12px}}</style>
+<canvas id="view"></canvas><header><div><h1>EIXO</h1><small>CAMPO DE TESTES</small></div><div id="speed">0 km/h</div><div id="stats"></div></header><div id="toolbar"><button id="reverse">D ▸</button><button id="reset">Repor</button><button id="info">?</button></div><div id="touch"><div class="pad left"><button data-key="left">◀</button><button data-key="right">▶</button></div><div class="pad right"><button data-key="handbrake">MÃO</button><button data-key="brake">FREIO</button><button data-key="throttle">GÁS</button></div></div><div id="hint">W / ↑ acelerar · S / ↓ frear · A D dirigir · espaço freio de mão · R alternar ré</div><div id="help"><article><small>PROTÓTIPO 0.1</small><h2>Um caminhão. Peso e movimento.</h2><p>Teste aceleração, curvas e frenagens no terreno. Os pneus perdem aderência em curvas rápidas; o freio de mão atua no eixo traseiro. Soltar o acelerador mantém a inércia.</p><p>Use o teclado ou os botões da tela. Troque entre D e R com o caminhão quase parado. “Repor” devolve o veículo ao início.</p><p>Visual procedural em pixel art inspirado na referência. Física simplificada de pneus, massa e rotação, feita para avaliação.</p><button id="play">Entrar no campo →</button></article></div>
+<script>
+(function(root){
+'use strict';
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+class Truck {
+ constructor(){this.reset();}
+ reset(){Object.assign(this,{x:0,y:0,vx:0,vy:0,a:-Math.PI/4,w:0,steer:0,gear:1,speed:0,slip:0,damage:0});}
+ step(dt,input,obstacles=[]){
+  const mass=9000,inertia=37000,g=9.81,front=2.3,rear=-1.7;
+  const c=Math.cos(this.a),s=Math.sin(this.a),fx=c,fy=s,rx=-s,ry=c;
+  const longitudinal=this.vx*fx+this.vy*fy, lateral=this.vx*rx+this.vy*ry;
+  this.speed=Math.hypot(this.vx,this.vy);
+  const target=clamp(input.steer||0,-1,1)*(.52/(1+this.speed*.035));
+  this.steer+=clamp(target-this.steer,-dt*1.3,dt*1.3);
+  let forceX=0,forceY=0,torque=0,maxSlip=0;
+  const drive=clamp(input.throttle||0,0,1)*this.gear*18000/(1+Math.abs(longitudinal)/12);
+  for(const axle of [{z:front,share:.43,angle:this.steer,drive:.25},{z:rear,share:.57,angle:0,drive:.75}]){
+   const ca=Math.cos(this.a+axle.angle),sa=Math.sin(this.a+axle.angle);
+   const ux=this.vx-this.w*axle.z*s,uy=this.vy+this.w*axle.z*c;
+   const along=ux*ca+uy*sa,across=-ux*sa+uy*ca;
+   const slip=Math.atan2(across,Math.abs(along)+1.5);
+   maxSlip=Math.max(maxSlip,Math.abs(slip));
+   let side=-slip*mass*g*axle.share*5;
+   const stopping=Math.min(Math.abs(along)*mass*axle.share/Math.max(dt,.001),mass*g*axle.share*.9);
+   let thrust=drive*axle.drive-Math.sign(along)*stopping*clamp(input.brake||0,0,1);
+   if(axle.z<0 && input.handbrake)thrust-=Math.sign(along)*stopping;
+   const grip=mass*g*axle.share*(input.handbrake&&axle.z<0?.42:.82);
+   const norm=Math.hypot(thrust,side);if(norm>grip){thrust*=grip/norm;side*=grip/norm;}
+   const ax=ca*thrust-sa*side,ay=sa*thrust+ca*side;
+   forceX+=ax;forceY+=ay;torque+=axle.z*(c*ay-s*ax);
+  }
+  const resistance=(160+this.speed*9+this.speed*this.speed*3.6);
+  if(this.speed>.03){forceX-=resistance*this.vx/this.speed;forceY-=resistance*this.vy/this.speed;}
+  this.vx+=forceX/mass*dt;this.vy+=forceY/mass*dt;
+  this.w+=(torque/inertia-this.w*.12)*dt;
+  this.a+=this.w*dt;this.x+=this.vx*dt;this.y+=this.vy*dt;this.slip=maxSlip;
+  if(!input.throttle&&this.speed<.05&&Math.abs(this.w)<.02){this.vx=0;this.vy=0;this.w=0;}
+  for(const o of obstacles){const dx=this.x-o.x,dy=this.y-o.y,d=Math.hypot(dx,dy),r=o.r+1.25;
+   if(d<r){const nx=dx/(d||1),ny=dy/(d||1);this.x=o.x+nx*r;this.y=o.y+ny*r;
+    const impact=this.vx*nx+this.vy*ny;if(impact<0){this.vx-=impact*1.08*nx;this.vy-=impact*1.08*ny;this.w*=.4;this.damage=Math.min(100,this.damage+Math.abs(impact)*2);}}
+  }
+  return {longitudinal,lateral};
+ }
+}
+if(typeof module!=='undefined')module.exports={Truck};else root.Truck=Truck;
+})(globalThis);
+
+</script><script>
+'use strict';
+const canvas=document.querySelector('canvas'),ctx=canvas.getContext('2d',{alpha:false});
+const truck=new Truck(),keys=new Set(),touch=new Map();let running=false,last=0,acc=0,cam={x:0,y:0},zoom=14;
+const obstacles=[{x:15,y:8,r:1.3},{x:21,y:8,r:1.3},{x:27,y:8,r:1.3},{x:-16,y:14,r:2},{x:8,y:-20,r:1.6}];
+function resize(){const ratio=2;canvas.width=Math.ceil(innerWidth/ratio);canvas.height=Math.ceil(innerHeight/ratio);ctx.imageSmoothingEnabled=false;zoom=Math.min(canvas.width,canvas.height)/23;}
+addEventListener('resize',resize);resize();
+const bindings={KeyW:'throttle',ArrowUp:'throttle',KeyS:'brake',ArrowDown:'brake',KeyA:'left',ArrowLeft:'left',KeyD:'right',ArrowRight:'right',Space:'handbrake'};
+addEventListener('keydown',e=>{if(bindings[e.code]){keys.add(bindings[e.code]);e.preventDefault();}if(e.code==='KeyR'&&!e.repeat)reverse();});
+addEventListener('keyup',e=>{if(bindings[e.code])keys.delete(bindings[e.code]);});
+function clear(){keys.clear();touch.clear();document.querySelectorAll('.on').forEach(b=>b.classList.remove('on'));acc=0;}
+addEventListener('blur',clear);document.addEventListener('visibilitychange',()=>{clear();last=0;});
+for(const b of document.querySelectorAll('[data-key]')){
+ b.addEventListener('pointerdown',e=>{e.preventDefault();b.setPointerCapture(e.pointerId);touch.set(e.pointerId,b.dataset.key);b.classList.add('on');});
+ const release=e=>{touch.delete(e.pointerId);if(![...touch.values()].includes(b.dataset.key))b.classList.remove('on');};b.addEventListener('pointerup',release);b.addEventListener('pointercancel',release);b.addEventListener('lostpointercapture',release);
+}
+function reverse(){if(Math.hypot(truck.vx,truck.vy)<.8){truck.gear*=-1;document.querySelector('#reverse').textContent=truck.gear>0?'D ▸':'◂ R';}}
+document.querySelector('#reverse').onclick=reverse;document.querySelector('#reset').onclick=()=>{truck.reset();cam.x=0;cam.y=0;clear();document.querySelector('#reverse').textContent='D ▸';};
+document.querySelector('#play').onclick=()=>{document.querySelector('#help').style.display='none';running=true;last=0;};document.querySelector('#info').onclick=()=>{running=false;clear();document.querySelector('#help').style.display='grid';};
+function has(k){return keys.has(k)||[...touch.values()].includes(k);}
+function project(x,y,z=0){const dx=x-cam.x,dy=y-cam.y;return [Math.round(canvas.width/2+(dx-dy)*.866*zoom),Math.round(canvas.height*.49+(dx+dy)*.43*zoom-z*zoom)];}
+function poly(points,color){ctx.fillStyle=color;ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(...p):ctx.moveTo(...p));ctx.closePath();ctx.fill();}
+function worldbox(x,y,z,l,w,h,color){const v=(a,b,c)=>project(x+a,y+b,z+c);poly([v(0,0,0),v(l,0,0),v(l,0,h),v(0,0,h)],color[1]);poly([v(l,0,0),v(l,w,0),v(l,w,h),v(l,0,h)],color[2]);poly([v(0,0,h),v(l,0,h),v(l,w,h),v(0,w,h)],color[0]);}
+function local(x,y,z){const c=Math.cos(truck.a),s=Math.sin(truck.a);return project(truck.x+x*c-y*s,truck.y+x*s+y*c,z);}
+function box(x,y,z,l,w,h,colors){const v=(a,b,c)=>local(x+a,y+b,z+c);const faces=[{depth:0,p:[v(0,0,0),v(l,0,0),v(l,0,h),v(0,0,h)],c:colors[1]},{p:[v(l,0,0),v(l,w,0),v(l,w,h),v(l,0,h)],c:colors[2]},{p:[v(l,w,0),v(0,w,0),v(0,w,h),v(l,w,h)],c:colors[2]},{p:[v(0,w,0),v(0,0,0),v(0,0,h),v(0,w,h)],c:colors[1]}];
+ // Draw only the two camera-facing vertical sides, then the top.
+ const cs=Math.cos(truck.a),sn=Math.sin(truck.a);const nx=cs+sn,ny=cs-sn;
+ for(const i of [nx>0?1:3,ny>0?2:0])poly(faces[i].p,faces[i].c);
+ poly([v(0,0,h),v(l,0,h),v(l,w,h),v(0,w,h)],colors[0]);}
+const steel=['#45463a','#232a25','#30362b'],rust=['#855638','#513824','#66412b'],tan=['#9d8860','#64583f','#7f6b4d'];
+function wheel(x,y){const p=local(x,y,.47);const r=zoom*.62;ctx.fillStyle='#171e1c';ctx.beginPath();ctx.ellipse(...p,r*.86,r*.7,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#353b34';ctx.beginPath();ctx.ellipse(...p,r*.56,r*.47,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#73776b';ctx.fillRect(p[0]-2,p[1]-2,4,4);}
+function drawTruck(){
+ const shadow=project(truck.x,truck.y);ctx.fillStyle='#26352a88';ctx.beginPath();ctx.ellipse(shadow[0],shadow[1]+zoom*.35,zoom*3.9,zoom*.95,0,0,Math.PI*2);ctx.fill();
+ const c=Math.cos(truck.a),s=Math.sin(truck.a),nearSide=c-s>0?1:-1;
+ for(const x of [-2.6,-1.15,2.25])wheel(x,-nearSide*1.17);
+ box(-3.4,-1.05,.55,6.6,2.1,.35,steel);
+ // Rear open rust-colored cargo box: floor and four low walls.
+ box(-3.4,-1.05,.92,2.1,2.1,.14,rust);
+ box(-3.4,-1.05,1.05,2.1,.12,.76,rust);box(-3.4,.93,1.05,2.1,.12,.76,rust);
+ box(-3.4,-1.05,1.05,.12,2.1,.76,rust);box(-1.42,-1.05,1.05,.12,2.1,.76,rust);
+ // Dark olive utility module and roof fittings.
+ box(-1.15,-1.02,.94,2.1,2.04,1.14,['#596047','#292f25','#343a2b']);
+ for(const x of [-1.13,.85])for(const y of [-1.04,1.0])box(x,y,.94,.08,.08,1.2,rust);
+ for(let i=0;i<8;i++)box(-.94+(i%4)*.46,-.72+Math.floor(i/4)*1.05,2.08,.11,.11,.07,steel);
+ // Cab, low hood, windshield and side windows.
+ box(1.22,-1.07,.94,1.7,2.14,1.52,tan);box(2.92,-1.0,.95,.47,2,.82,tan);
+ box(2.925,-.88,1.77,.025,1.76,.52,['#647b78','#293d3e','#3b5351']);
+ for(const side of [-1,1]){box(1.65,side>0?1.075:-1.1,1.64,.78,.025,.51,['#6c8180','#31474a','#35494b']);box(1.85,side>0?1.12:-1.22,1.48,.22,.1,.055,steel);}
+ box(3.35,-1.17,.5,.14,2.34,.22,steel);
+ for(const y of [-.82,.6])box(3.39,y,1.05,.055,.22,.15,['#cfbf79','#a18d57','#d6c385']);
+ for(const x of [-2.6,-1.15,2.25])wheel(x,nearSide*1.18);
+ // Rust patches and straps stay attached in local 3D space.
+ for(let i=0;i<12;i++){let x=-3.2+(i*17%100)/100*1.6,y=-.8+(i*37%100)/100*1.6;box(x,y,1.065,.14,.12,.015,['#745033','#533a28','#64422a']);}
+ for(const x of [-2.9,-1.65])box(x,-1.08,1.07,.045,2.16,.025,steel);
+ box(-2.8,nearSide>0?1.057:-1.075,1.17,.62,.018,.3,['#a69f83','#9d957d','#aaa186']);
+ // Pixel weathering, stable local-space clusters.
+ for(let i=0;i<16;i++){const x=1.3+(i*31%100)/100*1.4,y=-.9+(i*47%100)/100*1.7;poly([local(x,y,2.463),local(x+.12,y,2.463),local(x+.12,y+.07,2.463),local(x,y+.07,2.463)],i%2?'#8e7955':'#aa956a');}
+}
+function draw(){ctx.fillStyle='#526347';ctx.fillRect(0,0,canvas.width,canvas.height);
+ const startX=Math.floor(cam.x/5)*5,startY=Math.floor(cam.y/5)*5;
+ for(let x=startX-42;x<startX+42;x+=3)for(let y=startY-42;y<startY+42;y+=3){const seed=Math.abs(Math.sin(x*12.4+y*44.1));const p=project(x+seed*2,y+seed);ctx.fillStyle=seed>.5?'#75804b':'#5e704a';ctx.fillRect(p[0],p[1],2,2);if(seed>.5)ctx.fillRect(p[0]+2,p[1]-2,1,3);}
+ poly([project(-90,-5),project(90,-5),project(90,5),project(-90,5)],'#756f5b');
+ for(let x=Math.floor((cam.x-50)/5)*5;x<cam.x+50;x+=5)poly([project(x,-.08),project(x+2,-.08),project(x+2,.08),project(x,.08)],'#b1a583');
+ const items=obstacles.map(o=>({depth:o.x+o.y,draw:()=>worldbox(o.x-o.r/2,o.y-o.r/2,0,o.r,o.r,1.3,['#a18b67','#665c47','#807255'])}));items.push({depth:truck.x+truck.y,draw:drawTruck});items.sort((a,b)=>a.depth-b.depth);items.forEach(o=>o.draw());
+ document.querySelector('#speed').textContent=Math.round(Math.hypot(truck.vx,truck.vy)*3.6)+' km/h';document.querySelector('#stats').textContent='9,0 t · '+(truck.gear>0?'FRENTE':'RÉ')+'\nAderência '+(truck.slip>.3?'baixa':'normal');}
+function frame(now){if(!last)last=now;const delta=Math.min((now-last)/1000,.1);last=now;if(running){acc+=delta;const input={steer:(has('right')?1:0)-(has('left')?1:0),throttle:has('throttle')?1:0,brake:has('brake')?1:0,handbrake:has('handbrake')};while(acc>=1/120){truck.step(1/120,input,obstacles);acc-=1/120;}const t=1-Math.exp(-delta*5);cam.x+=(truck.x-cam.x)*t;cam.y+=(truck.y-cam.y)*t;}draw();requestAnimationFrame(frame);}requestAnimationFrame(frame);
+
+</script></html>
