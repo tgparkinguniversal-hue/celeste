@@ -1,14 +1,16 @@
-# Canine — Laboratório de Movimento 0.6
+# Canine — Laboratório de Movimento 0.7
 
-Extraia o ZIP Windows e abra CanineLab-v0.6.exe. Projeto original em Godot 4.2.1 para Windows 64 bits. Os recursos estão embutidos no executável.
+Extraia o ZIP Windows e abra CanineLab-v0.7.exe. Projeto original em Godot 4.2.1 para Windows 64 bits. Os recursos estão embutidos no executável.
 
 ## O que mudou
 
 Esta versão usa cenário, câmera, desenho e colisões **inteiramente 2D**. A aparência 2.5D vem de faces desenhadas, contraste, sombras de contato e camadas com paralaxe; não há Node3D ou câmera 3D na cena.
 
-A animação da personagem foi substituída por um **esqueleto 2D com peças rígidas** (Skeleton2D/Bone2D). Cabeça, tronco, braços, pernas, pés, cauda e cachecol são articulados; a mesma arte da cabeça é usada em todas as ações. O tamanho das peças e o comprimento dos membros permanecem fixos. A arte foi recriada para permitir sobreposição nos pivôs, incluindo um tronco sem mangas duplicadas. As folhas antigas são preservadas nas fontes, mas não são usadas nem incluídas no executável.
+A personagem usa um **esqueleto 2D com peças rígidas** (Skeleton2D/Bone2D). Cabeça, tronco, braços, pernas, pés, cauda e cachecol são articulados; a mesma arte da cabeça é usada em todas as ações. O tamanho das peças e o comprimento dos membros permanecem fixos. A arte foi recriada para permitir sobreposição nos pivôs, incluindo um tronco sem mangas duplicadas. As folhas antigas são preservadas nas fontes, mas não são usadas nem incluídas no executável.
 
-Pernas usam cinemática inversa de dois segmentos e tornozelos independentes para orientar as solas; agachar e deslizar dobram as pernas e abaixam a bacia. Há transições por tempo, balanço dos braços, respiração, reação ao pouso e movimento secundário de cauda/cachecol. A pose de segurar objetos estende os braços. Não há redimensionamento de cabeça/corpo entre estados nem troca de quadros completos. O estilo é de recortes articulados e ainda pode receber refinamento artístico e ajuste do contato dos pés, principalmente em rampas: não há sensor individual de terreno por pé nesta versão.
+A montagem foi revisada: o braço da frente fica no lado próximo do tronco, as peças mantêm a proporção original da arte (escala uniforme), e o tronco usa uma arte compacta compatível com a personagem. A canela e o sapato têm recortes próprios sem margens vazias que deslocavam seus eixos. Sobreposições opacas nas articulações fecham ombros, cotovelos, quadril, joelhos, tornozelos e pescoço.
+
+Pernas usam cinemática inversa de dois segmentos e tornozelos independentes. O comprimento dos ossos foi ajustado ao desenho; o agachamento foi recalibrado e a flexão máxima dos joelhos limitada a 138 graus. Na versão anterior, o centro de um joelho chegava a 5,45 px abaixo do chão ao andar agachada; a revisão manteve-o pelo menos 7,18 px acima do chão no percurso de poses testado. Não há sensor individual de terreno por pé; ainda pode ser necessário refinamento artístico e de apoio em rampas. Há transições por tempo, balanço dos braços, respiração, reação ao pouso e movimento secundário de cauda/cachecol. A pose de segurar objetos estende os braços.
 
 Os menus inicial, de pausa, controles e opções usam um padrão único inspirado nas referências: azul-petróleo escuro, cantos arredondados, borda discreta, texto creme, títulos serifados e seleção em pêssego. O menu de pausa inclui Continuar, Controles, Opções, Voltar ao início do mapa e Menu inicial. HUD de FPS, cartões de tutorial e ícones seguem a mesma paleta. A imagem detalhada do DualSense foi mantida.
 
@@ -41,7 +43,7 @@ Renderização sem limite de FPS e VSync desligado. Em Opções, escolha Full HD
 
 ## Verificações e vídeo
 
-59 verificações passaram: 35 de movimentação/menus, 15 de resoluções/entrada/objetos e 9 do rig. Os testes do rig cobrem dimensões e texturas fixas, conexões dos membros, alcance das pernas, orientação dos pés ao espelhar, transições e consistência a 30/60/120 FPS. A cabeça não muda de escala, mas pode mover-se verticalmente por postura e respiração. QA.json e tests/ registram os resultados. Não houve benchmark de GPU: este ambiente usa renderização por software.
+64 verificações passaram: 35 de movimentação/menus, 15 de resoluções/entrada/objetos, 9 do rig e 5 de encaixe visual. Os testes de encaixe verificam 108 poses renderizadas, nos dois sentidos, incluindo a pose de segurar objetos: silhueta conectada, ausência de partes abaixo do chão, folga dos joelhos, escala uniforme e posição do braço próximo. Os testes do rig cobrem dimensões e texturas fixas, conexões dos membros, alcance das pernas, orientação dos pés ao espelhar, transições e consistência a 30/60/120 FPS. A cabeça não muda de escala, mas pode mover-se verticalmente por postura e respiração. QA.json e tests/ registram os resultados. Não houve benchmark de GPU: este ambiente usa renderização por software.
 
 O executável foi exportado com template Windows oficial; seus recursos embutidos foram carregados pela engine Linux compatível para validação e gravação. **Não houve execução nativa em Windows ou teste com controle físico.** A execução de teste não apresentou erros de script.
 
