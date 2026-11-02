@@ -1,6 +1,6 @@
-# Canine — Laboratório de Movimento 0.2
+# Canine — Laboratório de Movimento 0.3
 
-Primeira versão original para Windows 64 bits, feita em Godot 4.2.1. Abra CanineLab-v0.2.exe. Não precisa instalar a Godot ou extrair dados de outro jogo.
+Primeira versão original para Windows 64 bits, feita em Godot 4.2.1. Abra CanineLab-v0.3.exe. Não precisa instalar a Godot ou extrair dados de outro jogo.
 
 O personagem foi desenhado a partir da referência fornecida, com uma folha de 48 quadros. É uma interpretação animada do desenho; detalhes e poses diferem da imagem estática. Animações: parado, caminhada, corrida, agachamento, subida/queda e deslizamento. Cenário 3D de blocos com texturas de teste em grade de 1 m, sprite em plano lateral: apresentação 2.5D.
 
@@ -29,7 +29,7 @@ Esses valores são voltados à resposta de um jogo de plataforma, não a biomec�
 
 ## Verificação e limites
 
-Testes integrados usam os corpos, colisores e cenário reais. Resultados da versão atual estão em QA-v0.2.json. Medem velocidade, frenagem, deslizamento, salto longo/curto, aterrissagem, teto baixo, buffer, coyote time, reposição, mapeamentos padrão e pausa. A validação dos botões é sintética, não um teste físico de gamepad. Capturas foram renderizadas em Linux/Mesa por software: não são benchmark de GPU Windows.
+Testes integrados usam os corpos, colisores e cenário reais. Resultados da versão atual estão em QA-v0.3.json. Medem velocidade, frenagem, deslizamento, salto longo/curto, aterrissagem, teto baixo, buffer, coyote time, reposição, mapeamentos padrão e pausa. A validação dos botões é sintética, não um teste físico de gamepad. Capturas foram renderizadas em Linux/Mesa por software: não são benchmark de GPU Windows.
 
 A exportação usa template Windows x86_64 oficial. O executável não foi executado nativamente em Windows neste ambiente Linux. A abertura do pacote embarcado também é verificada pela engine Linux compatível; isso valida os recursos, sem substituir o teste Windows. A versão não tem assinatura Authenticode.
 
@@ -48,3 +48,15 @@ Abra project.godot na Godot 4.2.1. Scripts legíveis em scripts/. O preset Windo
 A resistência motorizada dos gatilhos adaptativos do DualSense não foi implementada: o suporte desta versão usa eixos e botões convencionais. Também não há háptica avançada. USB/Bluetooth físicos e execução nativa Windows continuam pendentes de teste no aparelho do usuário.
 
 Os FPS das capturas foram medidos em renderização por software Linux, não representam o desempenho esperado na sua GPU Windows. Drivers ou ferramentas externas ainda podem impor limites próprios.
+
+## Correções da versão 0.3
+
+- A representação simplificada do controle foi substituída por uma imagem detalhada do modelo DualSense, gerada para esta interface. As chamadas foram reposicionadas e o fundo do menu ficou opaco. É uma aproximação visual, não uma cópia pixel a pixel da referência.
+- Habilitados mipmaps na textura da grade e nos assets do controle/ícones; filtragem anisotrópica para a grade e filtragem linear com mipmaps para a imagem do controle. Os sprites do personagem continuam com filtro nearest.
+- Removidas as faixas de piso sobrepostas e os postes decorativos finos. O fundo agora é uma parede única em grade, sem geometria coplanar com o piso.
+- Camada visual do sprite deslocada ao longo do raio da câmera ortográfica, mantendo a posição projetada e as colisões físicas originais. As faces frontais dos blocos deixam de cortar a arte. O teste mantém depth testing ativo e verifica a linha de visão até o rosto.
+- Sombra de contato separada do sprite, calculada sobre o chão físico durante os passos de física. O billboard não projeta mais uma sombra deslocada da posição de colisão.
+- Os dois blocos do setor de saltos agora encostam no chão e têm topos a 1,2 m e 1,4 m, alcançáveis a partir do piso. A entrada da rampa coincide com o nível do chão e sua saída encontra o patamar sem degrau ou sobreposição.
+- FPS sem limite, controles progressivos e o menu de teclado/DualSense mantidos.
+
+As verificações rodam na engine Linux com os mesmos recursos embutidos na exportação Windows; execução Windows e DualSense físico permanecem pendentes. Nenhuma reprodução idêntica de produto é garantida pela imagem gerada. Resistência física de gatilhos continua sem implementação.
