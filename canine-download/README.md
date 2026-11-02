@@ -29,7 +29,7 @@ Esses valores são voltados à resposta de um jogo de plataforma, não a biomec�
 
 ## Verificação e limites
 
-Testes integrados usam os corpos, colisores e cenário reais. Resultados estão em QA.json. Medem velocidade, frenagem, deslizamento, salto longo/curto, aterrissagem, teto baixo, buffer, coyote time, reposição, mapeamentos padrão e pausa. A validação dos botões é sintética, não um teste físico de gamepad. Capturas foram renderizadas em Linux/Mesa por software: não são benchmark de GPU Windows.
+Testes integrados usam os corpos, colisores e cenário reais. Resultados da versão atual estão em QA-v0.2.json. Medem velocidade, frenagem, deslizamento, salto longo/curto, aterrissagem, teto baixo, buffer, coyote time, reposição, mapeamentos padrão e pausa. A validação dos botões é sintética, não um teste físico de gamepad. Capturas foram renderizadas em Linux/Mesa por software: não são benchmark de GPU Windows.
 
 A exportação usa template Windows x86_64 oficial. O executável não foi executado nativamente em Windows neste ambiente Linux. A abertura do pacote embarcado também é verificada pela engine Linux compatível; isso valida os recursos, sem substituir o teste Windows. A versão não tem assinatura Authenticode.
 
