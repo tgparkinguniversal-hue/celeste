@@ -1,12 +1,12 @@
-# Canine — Laboratório de Movimento 0.4
+# Canine — Laboratório de Movimento 0.5
 
-Extraia o ZIP Windows e abra CanineLab-v0.4.exe. Projeto original em Godot 4.2.1 para Windows 64 bits. Os recursos estão embutidos no executável.
+Extraia o ZIP Windows e abra CanineLab-v0.5.exe. Projeto original em Godot 4.2.1 para Windows 64 bits. Os recursos estão embutidos no executável.
 
 ## O que mudou
 
 Esta versão usa cenário, câmera, desenho e colisões **inteiramente 2D**. A aparência 2.5D vem de faces desenhadas, contraste, sombras de contato e camadas com paralaxe; não há Node3D ou câmera 3D na cena.
 
-A arte da personagem foi revisada a partir do desenho anterior. A renderização descarta pixels de alfa abaixo de 0,88, removendo franjas e pixels semitransparentes ao redor do contorno. A amostragem permanece nearest para preservar pixel art. A posição dos pés é registrada por quadro, evitando saltos do sprite por margens inconsistentes. Uma folha separada de oito poses foi criada para **andar agachada**: os pés e braços alternam e a postura permanece baixa. A pose agachada parada é uma animação distinta. Esses assets foram gerados e não equivalem a animação artesanal quadro a quadro.
+Os quadros agora são texturas independentes, com margem transparente e somente o componente conectado da personagem: foram removidos 768 pixels desconectados (incluindo restos de pés da linha anterior da folha). A cabeça usa uma referência de dimensões comum entre os 68 quadros e os pés usam um ponto de apoio por quadro. Isso reduz alterações de escala entre poses; não garante desenho artesanal idêntico em toda pose. Andar agachada ganhou oito quadros baixos e deslizar ganhou quatro quadros próprios, sem encolher toda a personagem. As folhas originais são preservadas nas fontes. Assets gerados ainda podem precisar de refinamento artístico manual.
 
 Os menus inicial, de pausa, controles e opções usam um padrão único inspirado nas referências: azul-petróleo escuro, cantos arredondados, borda discreta, texto creme, títulos serifados e seleção em pêssego. O menu de pausa inclui Continuar, Controles, Opções, Voltar ao início do mapa e Menu inicial. HUD de FPS, cartões de tutorial e ícones seguem a mesma paleta. A imagem detalhada do DualSense foi mantida.
 
@@ -19,6 +19,8 @@ Os menus inicial, de pausa, controles e opções usam um padrão único inspirad
 | Pular | Espaço / W / seta acima | × |
 | Agachar / andar agachada | Ctrl / S / seta abaixo + direção | ○ + direção |
 | Deslizar | C em movimento | □ em movimento |
+| Segurar / puxar objeto | E + direção | R1 + direção |
+| Arrastar / levantar objeto | Clique esquerdo + mouse | — |
 | Pausar | Esc | Options |
 | Controles | F2 | Touchpad |
 | Reiniciar | R | Create |
@@ -31,16 +33,18 @@ Menus funcionam com mouse, teclado e navegação padrão de gamepad. As ações 
 
 Simulação a 120 Hz. Escala de 72 pixels por metro; caminhada 3,2 m/s, corrida 6,8 m/s, agachamento 1,5 m/s. Cápsula reduzida para agachar/deslizar, consulta de teto antes de levantar, aceleração e frenagem, controle aéreo menor, salto variável, coyote time de 110 ms e buffer de salto de 130 ms. Movimentos e câmera são suavizados por tempo. Entrar ou sair de menus aplica uma breve proteção contra um salto acidental com o mesmo botão de confirmação.
 
-Renderização sem limite de FPS e VSync desligado. Opções permitem ocultar FPS e alternar tela cheia. A física não é acelerada por FPS mais alto. O contador mede uma janela de 250 ms. As preferências valem para a sessão; ainda não há salvamento de opções, som, combate ou campanha.
+O mapa foi ampliado até 73 metros: seis corpos rígidos (caixas empilháveis de 8/12/24 kg e bolas de 6/9 kg), plataforma móvel e novos degraus. Objetos respondem a gravidade, atrito, colisões, torque e forças de arrasto; E/R1 permite puxar horizontalmente, e o mouse arrasta/levanta. Pausa congela os corpos; reiniciar restaura os objetos no passo da física.
+
+Renderização sem limite de FPS e VSync desligado. Em Opções, escolha Full HD (1920×1080) ou 2K/QHD (2560×1440). São alvos internos reais, com área lógica 1280×720 estável e ajuste 16:9 à janela. Em uma tela menor há redução da imagem; para ver todos os pixels use uma tela correspondente. Resolução maior aumenta a definição de UI/geometria, não inventa detalhe nas sprites. Opções permitem ocultar FPS e alternar tela cheia. A física não é acelerada por FPS mais alto. O contador mede uma janela de 250 ms. As preferências valem para a sessão; ainda não há salvamento de opções, som, combate ou campanha.
 
 ## Verificações e vídeo
 
-35 verificações integradas, incluindo ausência de nós 3D, velocidades, salto longo/curto, animação agachada com oito quadros, teto baixo, buffer/coyote, pausa e menus, mapeamentos de controle e recorte de alfa. QA.json e tests/probe.gd registram os resultados.
+52 verificações integradas passaram: 35 de movimentação/menus e 17 de resoluções, entrada do mouse, proporções de cabeça, ausência de componentes soltos, objetos, arrasto, plataforma, pausa e reinício. QA.json e tests/ registram os resultados. Não houve benchmark de GPU: este ambiente usa renderização por software.
 
 O executável foi exportado com template Windows oficial; seus recursos embutidos foram carregados pela engine Linux compatível para validação e gravação. **Não houve execução nativa em Windows ou teste com controle físico.** O exportador apresentou avisos de liberação de recursos ao encerrar; não houve erro de script na execução verificada.
 
-O vídeo é uma captura contínua da engine, controlada por um agente de regras. Mostra título, pausa, controles e o percurso. Captura fixa de 60 fps: não representa benchmark nem um limite no jogo distribuído. Não há áudio nesta versão.
+O vídeo é uma captura contínua da engine, controlada por um agente de regras. Mostra título, pausa, controles, percurso e interação com caixas, além das opções de resolução. Captura fixa de 60 fps: não representa benchmark nem um limite no jogo distribuído. Não há áudio nesta versão.
 
 ## Fontes e compilação
 
-Abra project.godot em Godot 4.2.1. O preset usa um caminho de template deste ambiente; ajuste custom_template ou instale os templates oficiais no seu computador. As pastas assets/ e scripts/ são suficientes para reimportar os recursos. O cache .godot/ não é necessário e não acompanha as fontes. GODOT-LICENSES.txt contém as licenças da engine.
+Abra project.godot em Godot 4.2.1. O preset usa um caminho de template deste ambiente; ajuste custom_template ou instale os templates oficiais no seu computador. O recurso assets/actor_bank.res já acompanha as fontes. Para reconstruí-lo após mudar as folhas, execute tests/bake_sprites.gd e ajuste seu caminho de saída; o jogo usa o banco pronto em execução. O cache .godot/ não é necessário e não acompanha as fontes. GODOT-LICENSES.txt contém as licenças da engine.

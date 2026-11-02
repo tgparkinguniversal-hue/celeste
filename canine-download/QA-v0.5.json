@@ -1,0 +1,31 @@
+{
+  "movement": {
+    "checks": 35,
+    "crouch_walk_frames": 8,
+    "failures": [],
+    "jump_full_px": 113.594223022461,
+    "jump_short_px": 67.9342422485352
+  },
+  "upgrade": {
+    "checks": 17,
+    "failures": []
+  },
+  "native_windows_tested": false,
+  "physical_dualsense_tested": false,
+  "capture_is_benchmark": false,
+  "exported_resources_demo": {
+    "jumps": 8,
+    "resets": 0,
+    "slides": 1,
+    "states": [
+      "idle",
+      "walk",
+      "run",
+      "slide",
+      "crouch_walk",
+      "jump",
+      "fall"
+    ],
+    "x_m": 51.2345716688368
+  }
+}
