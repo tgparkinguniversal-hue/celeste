@@ -1,0 +1,12 @@
+{
+  "motion": {
+    "max_frame_120hz": 1.06246542930603,
+    "max_leg_error": 2.86102294921875e-06,
+    "max_stance_drift": 0
+  },
+  "render": {
+    "clipped": [],
+    "detached": [],
+    "poses": 48
+  }
+}
