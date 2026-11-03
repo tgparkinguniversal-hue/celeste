@@ -1,0 +1,15 @@
+{
+  "continuity": {
+    "boundary_position_difference_px": 0.00031280517578125,
+    "cycle_wrap_step_px": 3.69383025169373,
+    "foot_samples": 4804,
+    "max_bone_length_error_px": 7.62939453125e-06,
+    "max_frame_step_120hz_px": 7.03961372375488,
+    "max_support_drift_px": 3.0517578125e-05
+  },
+  "render": {
+    "detached": [],
+    "rendered_poses": 48,
+    "under_floor": []
+  }
+}
