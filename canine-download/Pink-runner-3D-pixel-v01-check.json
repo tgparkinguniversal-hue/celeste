@@ -1,0 +1,18 @@
+{
+  "unique_cycle_frames": 36,
+  "fps": 60,
+  "native_resolution": [
+    256,
+    160
+  ],
+  "loop_mesh_endpoint_error_m": 0.0,
+  "max_rig_bone_length_error_m": 2.074460667134126e-07,
+  "camera_bounds_normalized": [
+    0.33307310938835144,
+    0.21719683706760406,
+    0.6068096160888672,
+    0.7119812369346619
+  ],
+  "camera": "orthographic",
+  "motion_interpreted_from_single_reference": true
+}
