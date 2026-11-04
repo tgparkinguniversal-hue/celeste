@@ -1,11 +1,11 @@
-# Atlas Nações — alpha 0.1
+# Atlas Nações — alpha 0.1.1
 
-Primeira build jogável de um tycoon nacional para Windows e Android. Projeto independente, inspirado no gênero de gestão territorial e na referência visual enviada pelo usuário. Não é afiliado ao RoWorld/Roblox. Arte vetorial do mapa, ícones pixelados próprios e painéis adaptados para mouse e toque.
+Primeira build jogável de um tycoon nacional para Windows e Android. Projeto independente, inspirado no gênero de gestão territorial e na referência visual enviada pelo usuário. Não é afiliado ao RoWorld/Roblox. Arte vetorial do mapa, marcadores simples com cores e siglas e painéis adaptados para mouse e toque.
 
 ## Jogar
 
-- Windows 64 bits: extraia o ZIP e execute `Atlas-Nacoes-v0.1-Windows.exe`. Requer OpenGL 3.3; não precisa instalar Godot.
-- Android 7 ou superior, ARM64 ou ARMv7 e OpenGL ES 3.0: instale `Atlas-Nacoes-v0.1-Android.apk`. É uma build de testes assinada com chave de desenvolvimento. Funciona offline e não solicita acesso à Internet.
+- Windows 64 bits: extraia o ZIP e execute `Atlas-Nacoes-v0.1.1-Windows.exe`. Requer OpenGL 3.3; não precisa instalar Godot.
+- Android 7 ou superior, ARM64 ou ARMv7 e OpenGL ES 3.0: instale `Atlas-Nacoes-v0.1.1-Android.apk`. É uma build de testes assinada com chave de desenvolvimento. Funciona offline e não solicita acesso à Internet.
 - Escolha no mapa ou na lista uma das 195 nações. Há modo equilibrado e modo com população/PIB de referência real.
 - Arraste o mapa; amplie pela roda do mouse, pinça ou botões +/−. Em Construir, escolha uma empresa, uma instalação e toque em terra dentro do país.
 - Espaço pausa; 1/2/4 alteram o tempo; F11 alterna tela cheia; Esc cancela posicionamento.
@@ -60,3 +60,7 @@ Arquitetura: `sim.gd` contém a simulação diária e o save; `map.gd` desenha e
 - Godot Engine 4.6.3, licença MIT: ver `GODOT-LICENSE.txt`.
 
 Nome Atlas Nações é provisório. O código e os ícones criados para este protótipo acompanham o pacote para continuidade do projeto.
+
+## Alterações 0.1.1
+
+Construções usam marcadores compactos com cor e sigla, substituindo os desenhos de miniaturas. Instrução de posicionamento fica abaixo dos botões do mapa. Mantém o mesmo formato de save e o pacote Android; pode atualizar a instalação anterior. Interface conferida novamente no renderizador Linux; validação em aparelhos reais continua pendente.
