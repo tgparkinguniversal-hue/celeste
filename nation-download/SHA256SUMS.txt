@@ -1,0 +1,3 @@
+46e3f68a4007d3b374bc248fe26f424e3dd587d7e6f9ef886751e579adc691fe  Atlas-Nacoes-v0.1-Codigo.zip
+85125a9004a74564db87e7640fd507fe0a6e24183e75948846e511eccee693df  Atlas-Nacoes-v0.1-Windows.zip
+fd942953c3be8f8e41b41c8d3b2f89c4fb2540d86268b08df7918541b9733c1d  Atlas-Nacoes-v0.1-Android.apk

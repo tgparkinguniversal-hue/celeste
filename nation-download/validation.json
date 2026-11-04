@@ -1,0 +1,21 @@
+{
+  "engine": "Godot 4.6.3",
+  "simulation_assertions": 236,
+  "ui_tests": "desktop and touch-layout scenarios passed",
+  "native_windows_tested": false,
+  "physical_android_tested": false,
+  "files": {
+    "Atlas-Nacoes-v0.1-Codigo.zip": {
+      "bytes": 580565,
+      "sha256": "46e3f68a4007d3b374bc248fe26f424e3dd587d7e6f9ef886751e579adc691fe"
+    },
+    "Atlas-Nacoes-v0.1-Windows.zip": {
+      "bytes": 36630992,
+      "sha256": "85125a9004a74564db87e7640fd507fe0a6e24183e75948846e511eccee693df"
+    },
+    "Atlas-Nacoes-v0.1-Android.apk": {
+      "bytes": 57206391,
+      "sha256": "fd942953c3be8f8e41b41c8d3b2f89c4fb2540d86268b08df7918541b9733c1d"
+    }
+  }
+}
