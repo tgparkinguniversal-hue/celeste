@@ -1,0 +1,11 @@
+CARRO MODULAR - DEMONSTRACAO 0.1
+
+Windows: extraia o ZIP e abra Carro-Modular-v01-Windows.exe.
+Android: instale o APK. Android 7+, ARM64/ARMv7, OpenGL ES 3.0. Build de testes assinada com chave de desenvolvimento.
+
+Use os botoes para escolher, ocultar e isolar pecas. Montar tudo restaura a visibilidade.
+A demonstracao mostra o carro modular com 23 pecas; ainda nao e um jogo de corrida nem possui direcao/fisica.
+
+Pacotes compilados com Godot 4.6.3. Assinatura e integridade do APK verificadas. Recursos exportados do Windows carregados na engine Linux. Ainda nao executados em Windows ou Android fisicos nesta sessao.
+
+Godot Engine: licenca MIT em GODOT-LICENSE.txt.
