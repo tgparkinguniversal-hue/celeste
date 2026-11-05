@@ -1,97 +1,51 @@
-# Carro modular — Godot 4
+# Carro modular — Godot 4 — versão 0.2
 
-Este pacote contém uma cena real, montada a partir de peças PNG independentes. A imagem do carro inteiro é uma referência de validação; ela **não é usada como um sprite inteiro por baixo das peças**.
+Modelo lateral com 23 peças PNG substituíveis. Abra `project.godot`, edite `Carro.tscn` e execute `demo.tscn`. Validado na Godot 4.6.3 Compatibility. Não é ainda um jogo de direção ou uma simulação mecânica completa.
 
-## Abrir
+## Relações de montagem
 
-1. Importe `project.godot` na Godot 4 (validado na 4.6.3, renderizador Compatibility).
-2. Abra `Carro.tscn` para editar o modelo. Arraste essa cena para seu jogo para instanciar o carro completo.
-3. Execute o projeto (F6 em `demo.tscn` ou F5) para ocultar peças, isolar o chassi e remover os aros.
+- `Carro/Carroceria` sustenta o chassi, capô, para-brisa, lanternas e saia.
+- `Carroceria/ConjuntoPorta` é o ponto de montagem comum da porta, do vidro lateral e do retrovisor. Desmontar a porta por `set_component_visible` remove o conjunto.
+- `Carroceria/ConjuntoParaChoqueDianteiro` carrega o para-choque e seu farol auxiliar.
+- `Carroceria/ConjuntoTampaTraseira` sustenta o vidro traseiro e o aerofólio do hatch.
+- Cada roda tem `Montante`, que mantém a pinça fixa, e `Montante/Cubo`, que gira com o disco e o conjunto aro/pneu.
+- O pneu é montado no mesmo conjunto do aro. Remover o aro pela API remove a roda montada, sem levar disco e pinça. O pneu também pode ser separado para serviço.
+- O aro está ligado ao cubo, não ao sprite do disco. Remover o disco visualmente não desmonta os elementos que compartilham seu cubo.
+- Escapamento, saia e para-choque traseiro ficam presos à carroceria, sem depender da porta ou das rodas.
 
-Nenhum APK ou jogo de corrida está incluído: este é o modelo modular e sua demonstração de encaixe.
+Os pontos de fixação são nós `Node2D`; suas texturas ficam em filhos `Sprite2D`. Assim, trocar o recorte/offset de uma peça não desloca suas peças vizinhas. A transformação do ponto de fixação, por sua vez, acompanha os elementos nele montados.
 
-## Estrutura
+Esta organização representa vínculos mecânicos em 2D. Não implementa ainda suspensão articulada, abertura de portas em perspectiva, parafusos, ferramentas ou regras de uma sequência de desmontagem de oficina.
 
-```text
-Carro (Node2D, grupo: carro)
-├── Chassi (Sprite2D)
-├── Capo (Sprite2D)
-├── Porta (Sprite2D)
-├── ParaChoqueDianteiro (Sprite2D)
-├── ParaChoqueTraseiro (Sprite2D)
-├── SaiaLateral (Sprite2D)
-├── Aerofolio (Sprite2D)
-├── Retrovisor (Sprite2D)
-├── Escapamento (Sprite2D)
-├── Vidros (Node2D)
-│   ├── VidroLateral (Sprite2D)
-│   ├── VidroTraseiro (Sprite2D)
-│   └── ParaBrisa (Sprite2D)
-├── Luzes (Node2D)
-│   ├── FarolDianteiro (Sprite2D)
-│   ├── LanternaTraseira (Sprite2D)
-│   └── PiscaLateral (Sprite2D)
-└── Rodas (Node2D)
-    ├── RodaTraseira (Node2D)
-    │   ├── Pneu (Sprite2D)
-    │   ├── Disco (Sprite2D)
-    │   ├── Pinca (Sprite2D)
-    │   └── Aro (Sprite2D)
-    │       └── SombraInterna (Sprite2D auxiliar)
-    └── RodaDianteira (mesma estrutura)
-```
-
-São **23 peças substituíveis**, todas com textura própria em `assets/parts/`. Os dois nós auxiliares de sombra dos aros não são peças adicionais: preservam as sombras originais que os aros projetam sobre os freios. Ocultar um aro oculta sua sombra e deixa o disco e a pinça visíveis. O chassi não contém pneus, aros, para-choques, saia, aerofólio, porta ou vidros embutidos.
-
-## Encaixe
-
-- Uma única base de desenho, em vista lateral, foi usada para todos os recortes. Não há peças redesenhadas em ângulos diferentes.
-- O tamanho original é preservado; nenhum filho recebeu escala individual para caber no carro.
-- As posições foram obtidas das coordenadas dessa mesma base, não estimadas ao montar uma prancha.
-- Texturas usam filtro **Nearest**, fundo transparente e `centered = false`.
-- `parts_manifest.json` registra arquivo, posição, retângulo na base, pivô e caminho do nó de cada peça.
-- Os pivôs das rodas estão nos cubos. Mantenha a pinça fixa ao simular rotação; não gire o grupo inteiro da roda com a pinça junto.
-- Áreas de alfa quase invisível da imagem gerada foram limpas para impedir halos. A comparação usa a referência limpa incluída no pacote, `assets/master_clean.png`.
-- Discos e trechos de pinça que ficavam ocultos pelos aros foram completados atrás deles. A sobreposição mantém a montagem original.
-
-O pacote conserva as superfícies visíveis dessa vista lateral. Não contém interiores completos, vista oposta, 3D, carro em outros ângulos ou catálogo de peças alternativas. Ao criar outra peça, use o mesmo ponto de encaixe e a mesma escala; uma nova arte de tamanho diferente precisa informar seu novo deslocamento.
-
-## Usar no código
+## Código
 
 ```gdscript
 var carro = preload("res://Carro.tscn").instantiate()
 add_child(carro)
-
-carro.set_component_visible(^"Aerofolio", false)
-carro.set_component_visible(^"ParaChoqueDianteiro", false)
-carro.set_component_visible(^"Rodas/RodaTraseira/Aro", false)
-carro.restore_all()
+carro.set_component_visible(^"Porta", false) # porta, vidro e retrovisor
+carro.set_component_visible(^"AroTraseira", false) # aro e pneu, freios ficam
+carro.rotate_hubs(0.3) # disco/roda giram; pinça fica fixa
+carro.restore_all() # restaura visibilidade e ângulo dos cubos
 ```
 
-Para trocar uma textura:
+`component()` aceita o ID estável registrado em `parts_manifest.json`, o caminho novo ou o caminho antigo da versão 0.1. Para desmontar conjuntos, use a API, não apenas `Sprite2D.hide()`: ocultar diretamente um sprite serve para inspecionar somente aquela arte, sem aplicar a relação de montagem.
 
-```gdscript
-carro.replace_component(
-    ^"Rodas/RodaDianteira/Aro",
-    preload("res://meu_aro.png"),
-    Vector2(-91, -91) # Exemplo: aro de 183 × 183 com o cubo no centro.
-)
-```
+`replace_component(path, texture, offset)` troca apenas o sprite, preservando o ponto de fixação e os demais componentes. Ao trocar um aro, a sombra auxiliar original é desativada para não interferir com os raios da nova peça.
 
-O método remove a sombra auxiliar do aro original ao trocar sua textura. Se trocar o aro diretamente no Inspector, oculte ou substitua também o seu filho `SombraInterna`; a sombra antiga pode não corresponder aos novos raios. A demonstração permite ocultar e mostrar peças; ainda não implementa inventário, compras, física ou um jogo de customização completo.
+Os aros têm um filho auxiliar `SombraInterna`, que preserva a oclusão da imagem original sobre os freios. Não é uma peça mecânica adicional. Filtro Nearest, escala individual 1, PNGs transparentes, pivôs e posições em `parts_manifest.json`.
 
-## Verificações
+## Demonstração
 
-`previews/validation.json` registra o teste feito na Godot 4.6.3:
+Os controles permitem mostrar/ocultar conjuntos, isolar uma peça, remover rodas e restaurar a montagem. O isolamento visual é separado da desmontagem, permitindo examinar um retrovisor sem precisar exibir toda a porta. O projeto ainda não oferece inventário, compras, direção ou física.
 
-- 23 peças carregadas, com PNGs separados.
-- Posições e tamanhos conferidos contra o manifesto.
-- Escala individual igual a 1.
-- Montagem renderizada comparada à base limpa: **zero pixels diferentes**.
-- Remoção de bodykit, isolamento do chassi, remoção dos aros e restauração da montagem.
+APK: Android 7+, ARM64/ARMv7 e OpenGL ES 3.0; assinatura de desenvolvimento, offline. Windows: extraia o ZIP e execute o EXE x86-64; requer OpenGL 3.3. Não executados em Windows ou Android físicos nesta sessão.
 
-Pré-visualizações também foram renderizadas pela cena, não geradas como outra interpretação do carro.
+## Verificação
 
-Para repetir: `godot --path . --script res://tools/verify_scene.gd` (requer renderização gráfica). Para reconstruir os recortes e a cena, execute `tools/split_master.gd` pela Godot e depois `python3 tools/build_scene.py`. O script Python apenas serializa os nós e suas posições; não desenha ou modifica imagens.
+- 23 peças carregadas e alinhadas nos pontos da base.
+- Render da montagem versus `assets/master_clean.png`: zero pixels diferentes.
+- Testes de deslocamento do suporte da porta, desmontagem de porta/para-choque/rodas, independência do disco e rotação do cubo com pinça fixa.
+- `tools/test_relations.gd`, `tools/verify_scene.gd` e `tools/test_demo.gd` permitem repetir os testes.
+- Os sprites do carro completo não são usados por baixo dos componentes. A referência limpa serve apenas à comparação.
 
-Arte criada a partir da referência visual enviada na conversa. O modelo é ilustrativo de um Nissan 180SX; sem afiliação ao fabricante.
+As áreas ocultas de freios foram completadas; interiores do carro, ângulo oposto e outros modelos não estão incluídos. A vista é lateral e deriva da referência fornecida na conversa. Sem afiliação ao fabricante. Godot Engine: licença MIT em `GODOT-LICENSE.txt`.

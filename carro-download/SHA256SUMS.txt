@@ -1,3 +1,6 @@
 2668cab2b3afc9aaacb47bb34809c9788368d1c119f52d07e42b105fd342b6b3  Carro-Modular-Godot4-v01.zip
+3a7f25e26caaa22e45fe921a247529d299f18af7fd6afe75753efa151837a847  Carro-Modular-Godot4-v02.zip
 35b82902dfc1be57ff592a94eaae84a639c18d5fbb5f7bf4598dcd6378370e0e  Carro-Modular-v01-Android.apk
 25f802d7a3b5c40f365ec0949290f8b9791667e34cfea0beddf06004ce531c2e  Carro-Modular-v01-Windows.zip
+081d82c032e52e1c6c9c6c168f854bd09b9c646cb801f60484e6eace59f72e0f  Carro-Modular-v02-Android.apk
+02d5d0ed77bed52057d35372838d3071d71d9055bde1076ed007394fbc4f3007  Carro-Modular-v02-Windows.zip

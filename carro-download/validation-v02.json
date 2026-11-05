@@ -1,0 +1,26 @@
+{
+  "different_pixels": 0,
+  "engine": "4.6.3-stable (official)",
+  "failures": 0,
+  "independent_scale": [
+    1,
+    1
+  ],
+  "reference_canvas": [
+    1915,
+    821
+  ],
+  "sprites": 23,
+  "tested": [
+    "scene load",
+    "all nodes present",
+    "native texture size",
+    "exact canvas placement",
+    "no per-part scale",
+    "rendered master equality",
+    "bodykit removal",
+    "chassis isolation",
+    "rim removal",
+    "assembly restore"
+  ]
+}
